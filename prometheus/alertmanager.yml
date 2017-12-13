@@ -1,0 +1,25 @@
+global:
+  smtp_smarthost: 'smtp.163.com:25'
+  smtp_from: "sender@163.com"
+  smtp_auth_username: "sender@163.com"
+  smtp_auth_password: 'SENDERPWD'
+route:  
+  group_by: [Alertname]
+  # Send all notifications to me.
+  receiver: admin
+  # When a new group of alerts is created by an incoming alert, wait at
+  # least 'group_wait' to send the initial notification.
+  # This way ensures that you get multiple alerts for the same group that start
+  # firing shortly after another are batched together on the first
+  # notification.
+  group_wait: 30s
+  # When the first notification was sent, wait 'group_interval' to send a batch
+  # of new alerts that started firing for that group.
+  group_interval: 5m
+  # If an alert has successfully been sent, wait 'repeat_interval' to
+  # resend them.
+  repeat_interval: 5m
+receivers:  
+- name: admin
+  webhook_configs:
+  - url: http://10.41.7.80
