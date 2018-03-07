@@ -3,6 +3,7 @@ from pyalgotrade import technical
 from pyalgotrade.barfeed import yahoofeed
 from pyalgotrade import plotter
 from pyalgotrade.stratanalyzer import returns
+import tushare as ts
 
 
 class DiffEventWindow(technical.EventWindow):
@@ -70,6 +71,18 @@ class MyStrategy(strategy.BacktestingStrategy):
 
 
 def runStrategy():
+    # 下载数据
+    jdf = ts.get_k_data("000725")
+
+    # 新建Adj Close字段
+    jdf["Adj Close"] =jdf.close
+
+    # 将tushare下的数据的字段保存为pyalgotrade所要求的数据格式
+    jdf.columns = ["Date", "Open", "Close", "High", "Low", "Volume", "code", "Adj Close"]
+
+    # 将数据保存成本地csv文件
+    jdf.to_csv("jdf.csv", index=False)
+
     feed = yahoofeed.Feed()
     feed.addBarsFromCSV("jdf", "jdf.csv")
 
@@ -85,5 +98,7 @@ def runStrategy():
     print("Final portfolio value: $%.2f" % myStrategy.getResult())
     plt.plot()
 
+
 runStrategy()
+
 
