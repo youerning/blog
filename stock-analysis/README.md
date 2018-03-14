@@ -285,7 +285,7 @@ end at 2018-03-13
 
 收益图如下
 
-![image](img/random_index.png)
+![image](img/randome_index.png)
 
 #### 上证指数daul thrust策略收益图
 输出如下
@@ -299,7 +299,7 @@ end at 2018-03-13
 ```
 收益图如下
 
-![image](img/dual_index)
+![image](img/dual_index.png)
 
 
 > 值得注意的是用tushare下载的上证指数的数据可能是有问题的,因为2015-03-27这天的最低价(Low)居然大于开盘价(Open)!!!
@@ -497,4 +497,7 @@ Out[43]: 0.2847682119205298
 
 ### 最后的最后
 关注以下再走吧。。。^_^
+
+
+
 
