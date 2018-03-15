@@ -86,7 +86,7 @@ root手机根据手机信号的不同，会有不同的办法，所以这里就�
 
 7.使用JucieSSH连接.在JuiceSSH中新建连接，如下图所示
 
-![登入termux](img/login-in)
+![登入termux](img/login-in.jpg)
 
 8.点击新建的连接，连接成功后，如下图
 
