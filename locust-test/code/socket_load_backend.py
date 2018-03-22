@@ -12,6 +12,7 @@ class SocketClient(object):
     """
 
     def __init__(self):
+        # 仅在新建实例的时候创建socket.
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.__connected = False
 
@@ -20,6 +21,7 @@ class SocketClient(object):
 
         def wrapper(*args, **kwargs):
             start_time = time.time()
+            # 判断是否之前建立过连接,如果是则建立连接，否则直接使用之前的连接
             if not self.__connected:
                 try:
                     skt.connect(args[0])
