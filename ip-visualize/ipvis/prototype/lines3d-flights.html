@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+           <script type="text/javascript">
+        var dom = document.getElementById("container");
+        var myChart = echarts.init(dom);
+        var app = {};
+        option = null;
+
+        // 获取数据
+        $.getJSON('/static/flights.json', function (data) {
+            var airports = data.airports.map(function (item) {
+                return {
+                    coord: [item[3], item[4]]
+                }
+            });
+
+            // 返回指定城市的经纬度，[经度, 纬度]
+            function getAirportCoord(idx) {
+                return [data.airports[idx][3], data.airports[idx][4]];
+            }
+
+            // Route: [airlineIndex, sourceAirportIndex, destinationAirportIndex]
+            // 路线: [航空公司的索引, 源机场索引, 目标机场索引]
+            // routeGroupByAirline = {"china": route}
+            var routesGroupByAirline = {};
+            data.routes.forEach(function (route) {
+                var airline = data.airlines[route[0]];
+                var airlineName = airline[0];
+                if (!routesGroupByAirline[airlineName]) {
+                    routesGroupByAirline[airlineName] = [];
+                }
+                routesGroupByAirline[airlineName].push(route);
+            });
+
+            // 数据点
+            var pointsData = [];
+
+            // 从路线中将源机场索引,目标机场索引的经纬度依次push到pointsData列表里面
+            // 结果应该是[[经度, 纬度], ...]
+            data.routes.forEach(function (airline) {
+                pointsData.push(getAirportCoord(airline[1]));
+                pointsData.push(getAirportCoord(airline[2]));
+            });
+            
+            // 最终数据
+            var series = data.airlines.map(function (airline) {
+                // 航线名
+                var airlineName = airline[0];
+                // 该航线的路线
+                var routes = routesGroupByAirline[airlineName];
+
+                // 如果没有路线则返回null
+                if (!routes) {
+                    return null;
+                }
+
+                // 返回数据对象
+                return {
+                    type: 'lines3D',
+                    name: airlineName,
+
+                    effect: {
+                        show: true,
+                        trailWidth: 2,
+                        trailLength: 0.15,
+                        trailOpacity: 1,
+                        trailColor: 'rgb(30, 30, 60)'
+                    },
+
+                    lineStyle: {
+                        width: 1,
+                        color: 'rgb(50, 50, 150)',
+                        // color: 'rgb(118, 233, 241)',
+                        opacity: 0.1
+                    },
+                    blendMode: 'lighter',
+
+                    // data对象为[[经度, 纬度], ...]
+                    data: routes.map(function (item) {
+                        return [airports[item[1]].coord, airports[item[2]].coord];
+                    })
+                };
+            }).filter(function (series) {
+                // 过滤null
+                return !!series;
+            });
+
+            // 不懂为什么再导入一遍数据点
+            series.push({
+                type: 'scatter3D',
+                coordinateSystem: 'globe',
+                blendMode: 'lighter',
+                symbolSize: 2,
+                itemStyle: {
+                    color: 'rgb(50, 50, 150)',
+                    opacity: 0.2
+                },
+                data: pointsData
+            });
+
+            // 设置options
+            myChart.setOption({
+                legend: {
+                    selectedMode: 'single',
+                    left: 'left',
+                    data: Object.keys(routesGroupByAirline),
+                    orient: 'vertical',
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+                globe: {
+
+                    environment: '/static/img/starfield.jpg',
+
+                    heightTexture: '/static/img/bathymetry_bw_composite_4k.jpg',
+
+                    displacementScale: 0.1,
+                    displacementQuality: 'high',
+
+                    baseColor: '#000',
+
+                    shading: 'realistic',
+                    realisticMaterial: {
+                        roughness: 0.2,
+                        metalness: 0
+                    },
+
+                    postEffect: {
+                        enable: true,
+                        depthOfField: {
+                            enable: false,
+                            focalDistance: 150
+                        }
+                    },
+                    temporalSuperSampling: {
+                        enable: true
+                    },
+                    light: {
+                        ambient: {
+                            intensity: 0
+                        },
+                        main: {
+                            intensity: 0.1,
+                            shadow: false
+                        },
+                        ambientCubemap: {
+                            texture: '/static/lake.hdr',
+                            exposure: 1,
+                            diffuseIntensity: 0.5,
+                            specularIntensity: 2
+                        }
+                    },
+                    viewControl: {
+                        autoRotate: false
+                    },
+                    silent: true
+                },
+                series: series
+            });
+
+            // 不知道啥意思
+            window.addEventListener('keydown', function () {
+                series.forEach(function (series, idx) {
+                    myChart.dispatchAction({
+                        type: 'lines3DToggleEffect',
+                        seriesIndex: idx
+                    });
+                })
+            });
+        });
+        ;
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    </script>
+   </body>
+</html>

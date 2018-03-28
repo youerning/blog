@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>IP 可视化</title>
+    <style type="text/css">
+        #top {
+            width: 230px;
+            /* opacity: 0.2; */
+            /* position: relative; */
+            /* right: 0px; */
+            /* top: 0px; */
+            /* float: right; */
+            color: #999;
+            font-size: 11px;
+            position: absolute;
+            top: 5px;
+            background-color: rgba(0,0,0,0.8);
+            border-radius: 3px;
+            right: 10px;
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body style="height: 100%; margin: 0">
+    <div id="top">
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>IP</th>
+              <th>Count</th>
+            </tr>
+          </thead>
+          <tbody id="top-tbody">
+          </tbody>
+        </table>
+    </div>
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $.getJSON('/data', function (data) {
+           function makeTr(index, ip, count) {
+                ret =  '<tr>\
+                          <th scope="row">' + index + '</th> \
+                          <td>' + ip + '</td> \
+                          <td>' + count +'</td> \
+                        </tr>'
+                return ret
+           };
+
+            // make table of top10
+            var ipTop = data.ipTop;
+            var retHtml = '';
+            // console.log(ipTop);
+            ipTop.forEach(function(item, index) {
+                var tr = makeTr(index + 1, item[0], item[1]);
+                retHtml = retHtml + tr;
+            });
+            $(retHtml).appendTo("#top-tbody");
+        });
+
+    </script>
+</body>
+</html>
