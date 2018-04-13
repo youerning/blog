@@ -171,7 +171,10 @@ func main() {
 
 其实主要代码来自这篇文章:https://nsl.cz/using-tun-tap-in-go-or-how-to-write-vpn/
 
-但是我做了一下修改..
+但是我做了一下修改,将数据包转发到指定的对端.
 
 
+参考连接:
 
+https://github.com/skywind3000/kcp
+http://colobu.com/2014/12/02/go-socket-programming-UDP/
