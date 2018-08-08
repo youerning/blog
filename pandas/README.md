@@ -830,7 +830,7 @@ log_df2.Request.resample("H").sum().fillna(0).plot(kind="line",figsize=(16,10))
 ```
 
 
-![request_trend](img/request.png)
+![request_trend](img/request_trend.png)
 
 分别绘图
 
@@ -849,7 +849,7 @@ req_df.columns = ["200", "304", "404"]
 # 绘图
 req_df.plot(figsize=(16,10))
 ```
-![request_trend2](img/request2.png)
+![request_trend2](img/request_trend2.png)
 
 ## 参考链接
 https://pandas.pydata.org/pandas-docs/stable/index.html
