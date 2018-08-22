@@ -14,3 +14,4 @@ http://blog.51cto.com/youerning
 9. [d3js从入门到出门](https://github.com/youerning/blog/tree/master/d3js)
 10. [pandas从入门到上楼](https://github.com/youerning/blog/tree/master/pandas)
 11. [Python也能高并发](https://github.com/youerning/blog/tree/master/asyncio)
+11. [Pyalgotrade源码阅读](https://github.com/youerning/blog/tree/master/pyalgotrade-code-read)
