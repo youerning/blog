@@ -15,3 +15,4 @@ http://blog.51cto.com/youerning
 10. [pandas从入门到上楼](https://github.com/youerning/blog/tree/master/pandas)
 11. [Python也能高并发](https://github.com/youerning/blog/tree/master/asyncio)
 11. [Pyalgotrade源码阅读](https://github.com/youerning/blog/tree/master/pyalgotrade-code-read)
+12. [数据挖掘指南之推荐系统读书笔记](https://github.com/youerning/blog/tree/master/data-mining_chapter01)
