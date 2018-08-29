@@ -2,7 +2,7 @@
 ## blog地址
 http://blog.51cto.com/youerning
 
-文章列表
+技术文章列表
 1. [使用Prometheus+grafana打造高逼格监控平台](https://github.com/youerning/blog/tree/master/prometheus)
 2. [用python炒股](https://github.com/youerning/blog/tree/master/python-trade)
 3. [数据分析之A股市场技术分析是否可行](https://github.com/youerning/blog/tree/master/stock-analysis)
@@ -16,3 +16,5 @@ http://blog.51cto.com/youerning
 11. [Python也能高并发](https://github.com/youerning/blog/tree/master/asyncio)
 11. [Pyalgotrade源码阅读](https://github.com/youerning/blog/tree/master/pyalgotrade-code-read)
 12. [数据挖掘指南之推荐系统读书笔记](https://github.com/youerning/blog/tree/master/data-mining_chapter01)
+非技术文章列表
+1. [股市投机迷思]
