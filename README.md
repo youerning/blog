@@ -16,5 +16,6 @@ http://blog.51cto.com/youerning
 11. [Python也能高并发](https://github.com/youerning/blog/tree/master/asyncio)
 11. [Pyalgotrade源码阅读](https://github.com/youerning/blog/tree/master/pyalgotrade-code-read)
 12. [数据挖掘指南之推荐系统读书笔记](https://github.com/youerning/blog/tree/master/data-mining_chapter01)
+
 非技术文章列表
 1. [股市投机迷思](https://github.com/youerning/blog/tree/master/stock-in-thought)
