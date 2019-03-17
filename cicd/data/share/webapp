@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# chkconfig: 2345 10 90 
+# description: myservice ....
+
+start(){
+ nohup /usr/bin/python /data/code/app.py > /var/log/webapp.log 2>&1 &
+}
+
+stop(){
+  pid=`ps -ef|grep app|grep -v grep|awk '{print $2}'`
+  kill -9 $pid
+}
+
+status(){
+    ps -ef|grep app|grep -v grep 2>&1 /dev/null
+    status_code=`echo $?`
+    if [ $status_code -eq 0 ]; then
+        echo "running"
+    else
+        echo "not running"
+    fi
+}
+
+case $1 in
+start )
+  start
+;;
+stop )
+  stop
+;;
+status )
+  status
+;;
+restart )
+  stop 
+  sleep 1
+  start
+;;
+* )
+  echo "usage: webapp status|start|stop|restart"
+;;
+esac
+

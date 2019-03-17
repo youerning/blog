@@ -1,0 +1,39 @@
+---
+- hosts: server1
+  tasks:
+  - name: backup code directory
+    shell: /bin/bash /data/share/backup.sh
+  - name: copy server1 code dir
+    copy: src=/data/server1/ dest=/data/code
+
+- hosts: server2
+  tasks:
+  - name: backup code directory
+    shell: /bin/bash /data/share/backup.sh
+  - name: copy server2 code dir
+    copy: src=/data/server2/ dest=/data/code
+
+- hosts: server3
+  tasks:
+  - name: backup code directory
+    shell: /bin/bash /data/share/backup.sh
+  - name: copy server3 code dir
+    copy: src=/data/server3/ dest=/data/code
+
+- hosts: servers
+  tasks:
+  - name: copy share data
+    copy: src=/data/share/ dest=/data/share/
+  - name: copy nginx conf
+    shell: cp /data/code/web.exmaple.com.conf /etc/nginx/conf.d/web.exmaple.com.conf
+    notify:
+      - restart nginx
+      - restart webapp
+  handlers:
+  - name: restart webapp
+    service: name=webapp state=restarted
+  - name: restart nginx
+    service: name=nginx state=restarted
+
+
+

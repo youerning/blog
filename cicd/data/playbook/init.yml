@@ -1,0 +1,13 @@
+---
+- hosts: servers
+  tasks:
+  - name: yum install nginx
+    yum: name=httpd state=installed
+  - name: yum install python-pip
+    yum: name=nginx state=installed
+  - name: pip install flask
+    pip: name=flask state=present
+  - name: copy webapp init script
+    template: src=/data/share/webapp dest=/etc/init.d/webapp
+  - name: chmod webapp init script
+    shell: chmod +x /etc/init.d/webapp
