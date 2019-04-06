@@ -358,3 +358,4 @@ ax.plot_surface(X_Train["C_WT"].values, X_Train["HORSE_RATING"].values, model.pr
 
 但是就个人而言，我觉得还是可以提升一定的命中概率的，没必要那么精确，那么提升概率的关键在于均值回归，即每匹马的速度回围绕着一个均值来回震动，如果大家有兴趣，我们来做一个更细致的分析吧。
 
+
