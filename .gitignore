@@ -7,6 +7,8 @@
 *.swp
 *.swo
 .DS_Store
+*.db
+*.csv
 build
 sklearn/datasets/__config__.py
 sklearn/**/*.html
@@ -44,7 +46,6 @@ lfw_preprocessed/
 nips2010_pdf/
 
 *.nt.bz2
-*.tar.gz
 *.tgz
 
 examples/cluster/joblib
