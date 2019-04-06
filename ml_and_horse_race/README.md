@@ -282,7 +282,7 @@ plot_df.plot(figsize=(16,9))
 df2.query('HORSE_NAME == "乱乱来"')[["C_WT", "SPEED"]].reset_index().plot.scatter(x="C_WT", y="SPEED", figsize=(16,9))
 
 ```
-![img/c_wt_speed_cor](img/c_wt_speed_cor.png)
+![img/c_wt_speed_cor](img/c_wt_speed_cor_wt.png
 
 上图看不出啥，但是大概知道两者没啥相关性，可借用seaborn更直观的可视化一下
 
@@ -341,7 +341,7 @@ ax.set_xlabel("SPEED")
 ax.scatter(X_Train["C_WT"].values, X_Train["HORSE_RATING"].values, Y_Train.values)
 ax.plot_surface(X_Train["C_WT"].values, X_Train["HORSE_RATING"].values, model.predict(X_Train.values))
 ```
-![img/model](himg/model.png)
+![img/model](img/model.png)
 
 
 
@@ -357,5 +357,4 @@ ax.plot_surface(X_Train["C_WT"].values, X_Train["HORSE_RATING"].values, model.pr
 既然不行为啥还写篇文章？论证一下咯。
 
 但是就个人而言，我觉得还是可以提升一定的命中概率的，没必要那么精确，那么提升概率的关键在于均值回归，即每匹马的速度回围绕着一个均值来回震动，如果大家有兴趣，我们来做一个更细致的分析吧。
-
 
