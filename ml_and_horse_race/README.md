@@ -282,7 +282,7 @@ plot_df.plot(figsize=(16,9))
 df2.query('HORSE_NAME == "乱乱来"')[["C_WT", "SPEED"]].reset_index().plot.scatter(x="C_WT", y="SPEED", figsize=(16,9))
 
 ```
-![img/c_wt_speed_cor](img/c_wt_speed_cor_wt.png
+![img/c_wt_speed_cor](img/c_wt_speed_cor_wt.png)
 
 上图看不出啥，但是大概知道两者没啥相关性，可借用seaborn更直观的可视化一下
 
