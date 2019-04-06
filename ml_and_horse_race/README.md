@@ -43,7 +43,7 @@ for num in range(start_num, 8376):
 ### 找出数据
 经过**观察**，主观觉得需要以下字段。
 
-![image](https://note.youdao.com/favicon.ico)
+![img/columns.png](img/columns.png)
 
 
 ### 存储数据
@@ -191,7 +191,7 @@ dtype: float64
 ```
 df2[["SPEED", "HORSE_NAME"]].groupby("HORSE_NAME").mean().hist(bins=20)
 ```
-![speed_hist](https://note.youdao.com/favicon.ico)
+![img/speed_hist](img/speed_hist.png)
 
 可视化马匹速度的历史规律
 
@@ -210,7 +210,7 @@ Name: HORSE_NAME, dtype: int64
 
 speed_and_horse.query('HORSE_NAME == "乱乱来"').plot(figsize=(16,9))
 ```
-![history_speed](https://note.youdao.com/favicon.ico)
+![img/history_speed](img/history_speed.png)
 
 可以发现这匹马在18年以前基本上还是在16.25左右上下徘徊, 不好不坏， 但是18年以后就不行了，可能老了吧
 
@@ -256,7 +256,7 @@ for horse_name in pd.value_counts(speed_and_horse["HORSE_NAME"]).head(20).index:
 
 plot_df.plot(figsize=(16,9))
 ```
-![history_speed20](https://note.youdao.com/favicon.ico)
+![img/history_speed20](img/history_speed20.png)
 
 
 ## 机器学习
@@ -282,7 +282,7 @@ plot_df.plot(figsize=(16,9))
 df2.query('HORSE_NAME == "乱乱来"')[["C_WT", "SPEED"]].reset_index().plot.scatter(x="C_WT", y="SPEED", figsize=(16,9))
 
 ```
-![c_wt_speed_cor](https://note.youdao.com/favicon.ico)
+![img/c_wt_speed_cor](img/c_wt_speed_cor.png)
 
 上图看不出啥，但是大概知道两者没啥相关性，可借用seaborn更直观的可视化一下
 
@@ -293,7 +293,7 @@ j = sns.jointplot("C_WT", "SPEED", data=df2.query('HORSE_NAME == "乱乱来"')[["C_
 # j = sns.jointplot('Num of A', ' Ratio B', data = data_df, kind='reg', height=8)
 j.annotate(stats.pearsonr)
 ```
-![sns_c_wt_cor](https://note.youdao.com/favicon.ico)
+![img/sns_c_wt_cor](img/sns_c_wt_cor.png)
 
 
 可视化一下HORS_RATING与SPEED之间的关系
@@ -305,7 +305,7 @@ import scipy.stats as stats
 j = sns.jointplot("HORSE_RATING", "SPEED", data=df2.query('HORSE_NAME == "乱乱来"')[["HORSE_RATING", "SPEED"]].reset_index(), kind="reg")
 j.annotate(stats.pearsonr)
 ```
-![sns_h_rating_cor](https://note.youdao.com/favicon.ico)
+![img/sns_h_rating_cor](img/sns_h_rating_cor.png)
 
 很明显还是没啥关系。
 
@@ -341,7 +341,7 @@ ax.set_xlabel("SPEED")
 ax.scatter(X_Train["C_WT"].values, X_Train["HORSE_RATING"].values, Y_Train.values)
 ax.plot_surface(X_Train["C_WT"].values, X_Train["HORSE_RATING"].values, model.predict(X_Train.values))
 ```
-![model](https://note.youdao.com/favicon.ico)
+![img/model](himg/model.png)
 
 
 
