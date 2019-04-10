@@ -17,7 +17,7 @@ http://blog.51cto.com/youerning
 11. [Pyalgotrade源码阅读](https://github.com/youerning/blog/tree/master/pyalgotrade-code-read)
 12. [数据挖掘指南之推荐系统读书笔记](https://github.com/youerning/blog/tree/master/data-mining_chapter01)
 13. [Jenkins流水线持续集成/发布](https://github.com/youerning/blog/tree/master/cicd)
-14. [机器学习与赛马](https://github.com/youerning/blog/tree/master/ml_and_horse_race)
+14. [机器学习与horse](https://github.com/youerning/blog/tree/master/ml_and_horse_race)
 
 非技术文章列表
 1. [股市投机迷思](https://github.com/youerning/blog/tree/master/stock-in-thought)
