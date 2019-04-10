@@ -1,37 +1,37 @@
-## ǰ��
-���Ӱ�Ӿ�����Ƚ�����˼��Ԫ��������, ��ȻŪ����һ����������Ͷע��������ѧЩ����ѧϰing�����������ܷ�ͨ������ѧϰ��Ԥ�����������
+## 前言
+香港影视剧里面比较有意思的元素是赛马, 忽然弄懂了一部分赛马的投注规则，再者学些机器学习ing，所以试试能否通过机器学习来预测赛马结果。
 
-> ע: ���ﵱȻ�κ�û�й�����ҶĲ�����˼���������֡�
+> 注: 这里当然任何没有鼓励大家赌博的意思，纯粹练手。
 
-> Ϊ�˱���ֱ�ӱ���������ʵս�У���������ʹ�õ���**�¼�������**������.
+> 为了避免直接被用于线下实战中，所以这里使用的是**新加坡**的数据.
 
-Դ����: [����ѧϰ������](https://github.com/youerning/blog/tree/master/ml_and_horse_race)
+源代码: [机器学习与horse](https://github.com/youerning/blog/tree/master/ml_and_horse_race)
 
 
-## ���½ṹ
-- ���ݻ�ȡ
-- ���ݷ���
-- ���ݿ��ӻ�
-- ����ѧϰ
-- �ܽ�
+## 文章结构
+- 数据获取
+- 数据分析
+- 数据可视化
+- 机器学习
+- 总结
 
-## ���ݻ�ȡ
-�����¼��µ�������վ����ֱ�ӷ�����Ҫ���ӣ�����û�бȽϺõ����ӣ����Բ��õ��̷߳��ʣ��±�����IP������Ȥ�Ŀ������бȽϺõ�ǽ������Ļ������Լ��϶��̻߳��߶�Э��. ��scrapy֮��Ŀ���õĲ��࣬������д�ˡ�
+## 数据获取
+由于新加坡的网站不能直接访问需要梯子，由于没有比较好的梯子，所以采用单线程访问，怕被屏蔽IP，有兴趣的可以在有比较好的墙外代理的话，可以加上多线程或者多协程. 而scrapy之类的框架用的不多，所以手写了。
 
-��Ȼ�ܼ򵥣����Ǵ���Ҳ��300���У�����ֻ���߼���Դ�������ֱ�Ӳ鿴Դ���롣
+虽然很简单，但是代码也有300多行，这里只讲逻辑，源代码可以直接查看源代码。
 
-### �ҳ�����
-����**�۲�**��������ÿ�յ����������209/01/01֮�����һ��������IDֵ��2009/01/01��IDֵ��1����һ��������2���Դ����ƣ���ֹ��2019/03/29�գ�IDֵΪ8375.
+### 找出链接
+经过**观察**，官网的每日的结果在209/01/01之后会有一个递增的ID值，2009/01/01的ID值是1，下一日是2，以此类推，截止至2019/03/29日，ID值为8375.
 
-����ʷ���ͨ���������ʽ����:
+而历史结果通过下面的形式访问:
 ```
 http://cn.turfclub.com.sg/Racing/Pages/ViewRaceResult/<ID>/All
 
-��:
+如:
 http://cn.turfclub.com.sg/Racing/Pages/ViewRaceResult/1/All
 ```
-��˱�������ID��Χ���ܻ�ȡ������ʷ�����
-����ʾ������:
+因此遍历所有ID范围就能获取所有历史结果。
+代码示例如下:
 ```
 base_url = "http://cn.turfclub.com.sg/Racing/Pages/ViewRaceResult/%s/All"
 for num in range(start_num, 8376):
@@ -40,17 +40,17 @@ for num in range(start_num, 8376):
         
 ```
 
-### �ҳ�����
-����**�۲�**�����۾�����Ҫ�����ֶΡ�
+### 找出数据
+经过**观察**，主观觉得需要以下字段。
 
 ![img/columns.png](img/columns.png)
 
 
-### �洢����
-Ϊ�˼��ٶ����ݿ����������ͨ��sqlite3�洢����.
-����sqlite3�����ݸ�ʽ�洢�����csv�Ľ��������Դ����ֿ�鿴��
+### 存储数据
+为了减少对数据库的依赖这里通过sqlite3存储数据.
+关于sqlite3的数据格式存储结果及csv的结果可以在源代码仓库查看。
 
-Sqlite3���ݽṹ����:
+Sqlite3数据结构如下:
 
 ```
 CREATE TABLE IF NOT EXISTS DATA
@@ -80,19 +80,19 @@ CREATE TABLE IF NOT EXISTS DATA
 ```
 
 
-### С��
-������˼���ǣ�����Щ�����������¼��µĽ�������������ҵĽ������Ҳ��֪��Ϊɶ����������ֻȡ�¼��µ����ݽ����
+### 小结
+很有意思的是，在这些结果里面除了新加坡的结果还有其他国家的结果，我也不知道为啥，这里这里只取新加坡的数据结果。
 
-���о����е�IDֵû�н������Ҳ��֪��Ϊɶ��
+还有就是有的ID值没有结果，我也不知道为啥。
 
 
-> ע: �ڻ�ȡ�����У���Щ���ִ����Ĳ����Ƿǳ��ã�����һЩ�ַ������͵����ݣ�ժȡ�Ĳ����Ƿǳ�׼ȷ, ����GitHub�ֿ������ṩ�������ļ�����һС���ֻ������⣬ϣ����֪Ϥ��
+> 注: 在获取过程中，有些部分处理的并不是非常好，所以一些字符串类型的数据，摘取的并不是非常准确, 所以GitHub仓库里面提供的数据文件，有一小部分会有问题，希望你知悉。
 
-## ���ݷ���
-��һ�����ǽ�����������������һ�ھ��ǽ����ݽ���һЩͳ�Ʒ�������ͼ����һЩ���еĹ��ɡ�
+## 数据分析
+上一节我们将数据爬了下来，这一节就是将数据进行一些统计分析，试图发现一些其中的规律。
 
-### ׼������
-���ȵ���python���ݷ���������
+### 准备工作
+首先导入python数据分析三剑客
 
 ```
 import pandas as pd
@@ -100,7 +100,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 ```
 
-�����������ͨ��pandas���ء�
+将保存的数据通过pandas加载。
 
 ```
 import sqlite3
@@ -108,20 +108,20 @@ conn = sqlite3.connect('data.db')
 df = pd.read_sql("SELECT * FROM DATA", conn, index_col="ID", parse_dates=["DATE"])
 ```
 
-### �������
-�鿴����
+### 常规操作
+查看数据
 df.head()
 ```
 DATE	LOCATION	LENGTH	TRACK	TRACK_TYPE	TRACK_STATUS	RACE_NUM	H_NO	HORSE_NAME	GEAR	...	H_WT	HCP_WT	C_WT	BAR	JOCKEY	TRAINER	RUNING_POSITION	PI	TOTAL_SECONDS	LBW
 ID																					
-2009-01-01-1-3-1	2009-01-01	�¼���	1700	unkonw	(POLYTRACK)	����	1	10	WINNIEDUN		...	440.0	52.0	52.0	3	M AU	HK TAN	1-1-1	1	0.0	0.0
-2009-01-01-1-9-2	2009-01-01	�¼���	1700	unkonw	(POLYTRACK)	����	1	2	REGAL KNIGHT		...	457.0	59.0	57.0	9	E ASLAM	L TRELOAR	9-5-2	2	0.0	0.5
-2009-01-01-1-10-3	2009-01-01	�¼���	1700	unkonw	(POLYTRACK)	����	1	3	JOYLUCK		...	477.0	58.5	58.5	10	N CALLOW	RB MARSH	11-10-3	3	0.0	1.3
-2009-01-01-1-1-4	2009-01-01	�¼���	1700	unkonw	(POLYTRACK)	����	1	1	MAJESTIC KNIGHT		...	521.0	59.0	55.0	1	T. AFFANDI	L TRELOAR	4-3-4	4	0.0	1.8
-2009-01-01-1-8-5	2009-01-01	�¼���	1700	unkonw	(POLYTRACK)	����	1	7	ELEVENTH AVENUE		...	477.0	54.5	54.5	8	R FRADD	M FREEDMAN	8-8-5	5	0.0	2.6
+2009-01-01-1-3-1	2009-01-01	新加坡	1700	unkonw	(POLYTRACK)	良好	1	10	WINNIEDUN		...	440.0	52.0	52.0	3	M AU	HK TAN	1-1-1	1	0.0	0.0
+2009-01-01-1-9-2	2009-01-01	新加坡	1700	unkonw	(POLYTRACK)	良好	1	2	REGAL KNIGHT		...	457.0	59.0	57.0	9	E ASLAM	L TRELOAR	9-5-2	2	0.0	0.5
+2009-01-01-1-10-3	2009-01-01	新加坡	1700	unkonw	(POLYTRACK)	良好	1	3	JOYLUCK		...	477.0	58.5	58.5	10	N CALLOW	RB MARSH	11-10-3	3	0.0	1.3
+2009-01-01-1-1-4	2009-01-01	新加坡	1700	unkonw	(POLYTRACK)	良好	1	1	MAJESTIC KNIGHT		...	521.0	59.0	55.0	1	T. AFFANDI	L TRELOAR	4-3-4	4	0.0	1.8
+2009-01-01-1-8-5	2009-01-01	新加坡	1700	unkonw	(POLYTRACK)	良好	1	7	ELEVENTH AVENUE		...	477.0	54.5	54.5	8	R FRADD	M FREEDMAN	8-8-5	5	0.0	2.6
 ```
 
-����ͳ��
+常规统计
 df.descibe()
 ```
 
@@ -136,17 +136,17 @@ min	1000.000000	1.000000	1.000000	0.000000	372.000000	45.500000	0.000000	0.00000
 max	2400.000000	12.000000	18.000000	127.000000	647.000000	59.500000	59.500000	16.000000	99.000000	640.980000	99.800000
 ```
 
-### �еķ�ʸ
-�鿴�Լ�����Ȥ������
+### 有的放矢
+查看自己感兴趣的数据
 
-#### �鿴ÿƥ��ÿ���������ٶ�
-����ȥ��total_secondsΪ��ĳ���
+#### 查看每匹马每场比赛的速度
+首先去掉total_seconds为零的场次
 
-��ʵ��Ӧ�ý�ʱ���ֶε�ԭʼ���ݱ��������ģ�����ԭʼ������ʵ��0:00.00, 
+其实我应该讲时间字段的原始数据保存下来的，这里原始数据其实是0:00.00, 
 
-��������Ϊ����ʱ�䵥λһ�����������β�һ����������ʱ�䵥λ�ϻ�����һ����ͷ���ľ������100��������ͷ���ľ�����1����ô1/100 ����10����
+但是由于为了怕时间单位一样，但是名次不一样，所以在时间单位上还加了一个离头马的距离除以100，假设离头马的距离是1，那么1/100 等于10毫秒
 
-��������Ӧ��ȥ��С��1������, ����������ʵ������Щ�쳣������ȥ��С��50�Ľ��
+所以这里应该去掉小于1的数据, 但是数据其实还是有些异常，所以去掉小于50的结果
 ```
 
 df2 = df.query("TOTAL_SECONDS > 50")
@@ -163,7 +163,7 @@ Name: SPEED, dtype: float64
 ```
 
 
-#### �鿴ÿ����ʦÿ���������ٶ�
+#### 查看每个骑师每场比赛的速度
 
 ```
 df2[["SPEED", "JOCKEY"]].groupby("JOCKEY").mean().sort_values(by="SPEED").tail()
@@ -171,11 +171,11 @@ df2[["SPEED", "JOCKEY"]].groupby("JOCKEY").mean().sort_values(by="SPEED").tail()
 
             SPEED
 JOCKEY	
-��ά��	16.899374
-ۭ����	16.952015
-Ѧ����	16.969355
-������	16.973066
-������	17.204301
+麦维凯	16.899374
+郗福年	16.952015
+薛凯华	16.969355
+杜美尔	16.973066
+杜利莱	17.204301
 
 df2[["SPEED", "JOCKEY"]].groupby("JOCKEY").mean().mean()
 SPEED    16.400328
@@ -183,65 +183,65 @@ dtype: float64
 ```
 
 
-## ���ݿ��ӻ�
-���ӻ��Լ�����Ȥ������ֵ
+## 数据可视化
+可视化自己感兴趣的特征值
 
-���ӻ��ٶȷֲ�
+可视化速度分布
 
 ```
 df2[["SPEED", "HORSE_NAME"]].groupby("HORSE_NAME").mean().hist(bins=20)
 ```
 ![img/speed_hist](img/speed_hist.png)
 
-���ӻ���ƥ�ٶȵ���ʷ����
+可视化马匹速度的历史规律
 
 ```
-# ������һƥ��ʷ��������������������ƥ
+# 首先找一匹历史数据中比赛次数最多的马匹
 
 speed_and_horse = df2[["SPEED", "HORSE_NAME"]]
 pd.value_counts(speed_and_horse["HORSE_NAME"]).head()
 
-������       89
-��������      77
+乱乱来       89
+甜蜜舞曲      77
 PACINO    71
-̫���۹�      69
-�׿���       68
+太阳帝国      69
+白咖啡       68
 Name: HORSE_NAME, dtype: int64
 
-speed_and_horse.query('HORSE_NAME == "������"').plot(figsize=(16,9))
+speed_and_horse.query('HORSE_NAME == "乱乱来"').plot(figsize=(16,9))
 ```
 ![img/history_speed](img/history_speed.png)
 
-���Է�����ƥ����18����ǰ�����ϻ�����16.25���������ǻ�, ���ò����� ����18���Ժ�Ͳ����ˣ��������˰�
+可以发现这匹马在18年以前基本上还是在16.25左右上下徘徊, 不好不坏， 但是18年以后就不行了，可能老了吧
 
-���Ǻ��п��������������������ǽ���������ǰ20����ƥ�����Ƴ���
+但是很有可能这是特例，所以我们将出场次数前20的马匹都绘制出来
 
 
-˳�����һ������������ǰ��ʮƥ������ʷ���ݡ�
+顺便绘制一下比赛次数的前二十匹马的历史数据。
 
 ```
-#  ���ȿ���ǰ��ʮ����ƥ
+#  首先看看前二十的马匹
 pd.value_counts(speed_and_horse["HORSE_NAME"]).head(20)
 
-������                89
-��������               77
+乱乱来                89
+甜蜜舞曲               77
 PACINO             71
-̫���۹�               69
-�׿���                68
+太阳帝国               69
+白咖啡                68
 LUCKY SUN          67
 NINTH AVENUE       66
-��������               66
-������                66
+六合兴旺               66
+东道主                66
 SHINKANSEN         65
 DAAD'S THE WAY     65
-��������               64
-�°�                 64
+经典乌龙               64
+新邦                 64
 INCREDIBLE HULK    64
-����ʯ                64
-ʥ��                 64
-���                 64
-���ӿ쳵               64
-�޴����               64
+蓝宝石                64
+圣冠                 64
+快好                 64
+银河快车               64
+巨大火球               64
 CONQUEST           63
 Name: HORSE_NAME, dtype: int64
 
@@ -259,66 +259,66 @@ plot_df.plot(figsize=(16,9))
 ![img/history_speed20](img/history_speed20.png)
 
 
-## ����ѧϰ
-��֪����Ƿ�֪���������Ĺ�������������������˭���ٶ���죬˭�ͻ�ʤ��������ҪԤ������������Ӧ���ǱȽ�˭���ٶȿ죬�����ǿ��������εĸ��ʣ�����֮������һ���ع�����⡣
+## 机器学习
+不知大家是否知道的赛马的规则，比赛的名次排名是谁的速度最快，谁就获胜，所以想要预测比赛的名次应该是比较谁的速度快，而不是看其获得名次的概率，换言之，这是一个回归的问题。
 
-����ͳ������Իع�ɡ�
-> Ϊɶ�������������ѧϰʲô�ģ�����ѽ
+这里就尝试线性回归吧。
+> 为啥不用神经网络深度学习什么的？不会呀
 
-### ����ѡ��
-����ѡ��������Ԥ��ֵ��Ԥ��ֵ�ܺ�ȷ��������ǰ����ٶȡ�
+### 特征选择
+首先选择特征跟预测值，预测值很好确定，就是前面的速度。
 
-���ȿ�ֱ��ѡ�����������ӻ����¡�����ѡ���������C_WT(���)���Լ�HORSE_RATING(��ƥ����)��
+首先靠直觉选几个特征可视化以下。这里选择的特征是C_WT(配磅)，以及HORSE_RATING(马匹评分)。
 
-> �����ָ������ƥ�䱸������������������ھ������ñ��ֱ�����ÿƥ����״̬��࣬��ǿ������
+> 配磅是指，让马匹配备以下重量的物件，用于尽可能让本轮比赛的每匹马的状态差不多，锄强扶弱。
 
-> ��ƥ��������������ƶ��Ĺ����֡�
+> 马匹评分由马会根据制定的规则打分。
 
-���ӻ�һ��C_WT��SPEED֮��Ĺ�ϵ
+可视化一下C_WT与SPEED之间的关系
 
 ```
-# ���ﻹ��ѡ��鿴  "������"��ƥ��
+# 这里还是选择查看  "乱乱来"这匹马
 
-df2.query('HORSE_NAME == "������"')[["C_WT", "SPEED"]].reset_index().plot.scatter(x="C_WT", y="SPEED", figsize=(16,9))
+df2.query('HORSE_NAME == "乱乱来"')[["C_WT", "SPEED"]].reset_index().plot.scatter(x="C_WT", y="SPEED", figsize=(16,9))
 
 ```
 ![img/c_wt_speed_cor](img/c_wt_speed_cor_wt.png)
 
-��ͼ������ɶ�����Ǵ��֪������ûɶ����ԣ��ɽ���seaborn��ֱ�۵Ŀ��ӻ�һ��
+上图看不出啥，但是大概知道两者没啥相关性，可借用seaborn更直观的可视化一下
 
 
 ```
 import seaborn as sns
-j = sns.jointplot("C_WT", "SPEED", data=df2.query('HORSE_NAME == "������"')[["C_WT", "SPEED"]].reset_index(), kind="reg")
+j = sns.jointplot("C_WT", "SPEED", data=df2.query('HORSE_NAME == "乱乱来"')[["C_WT", "SPEED"]].reset_index(), kind="reg")
 # j = sns.jointplot('Num of A', ' Ratio B', data = data_df, kind='reg', height=8)
 j.annotate(stats.pearsonr)
 ```
 ![img/sns_c_wt_cor](img/sns_c_wt_cor.png)
 
 
-���ӻ�һ��HORS_RATING��SPEED֮��Ĺ�ϵ
+可视化一下HORS_RATING与SPEED之间的关系
 
 ```
 import seaborn as sns
 import scipy.stats as stats
 
-j = sns.jointplot("HORSE_RATING", "SPEED", data=df2.query('HORSE_NAME == "������"')[["HORSE_RATING", "SPEED"]].reset_index(), kind="reg")
+j = sns.jointplot("HORSE_RATING", "SPEED", data=df2.query('HORSE_NAME == "乱乱来"')[["HORSE_RATING", "SPEED"]].reset_index(), kind="reg")
 j.annotate(stats.pearsonr)
 ```
 ![img/sns_h_rating_cor](img/sns_h_rating_cor.png)
 
-�����Ի���ûɶ��ϵ��
+很明显还是没啥关系。
 
-��ʵ�����̫����ǲ��ʺ��������������ֲ������Ϊ�������һ������ʵս��ģ�ͣ�����ͽ�����������Ϊ�����ɡ�
+其实相关性太差，但是不适合做特征，但是又不是真的为了真的做一个可以实战的模型，这里就将这两个做作为特征吧。
 
-> Ϊ�˻���ѧϰ��ѧϰ�ɣ� ǿ����ϣ�����
+> 为了机器学习而学习吧， 强行拟合！！！
 
-### ���ģ��
-ѡһ��ģ�ͣ�����ѡ��LinearRegression��
+### 拟合模型
+选一个模型，这里选择LinearRegression。
 
 ```
 from sklearn.linear_model import LinearRegression
-df_lll = df2.query("HORSE_NAME == '������'")[["SPEED", "C_WT", "HORSE_RATING"]]
+df_lll = df2.query("HORSE_NAME == '乱乱来'")[["SPEED", "C_WT", "HORSE_RATING"]]
 split_index = int(len(df_lll) * 0.6)
 X_Train = df_lll[:split_index][["C_WT", "HORSE_RATING"]]
 Y_Train = df_lll[:split_index][["SPEED"]]
@@ -329,7 +329,7 @@ model = LinearRegression()
 model.fit(X_Train.values, Y_Train.values)
 ```
 
-�������ϵ�ģ�Ϳ��ӻ�һ��
+将结果拟合的模型可视化一下
 
 ```
 from mpl_toolkits.mplot3d import Axes3D
@@ -345,16 +345,16 @@ ax.plot_surface(X_Train["C_WT"].values, X_Train["HORSE_RATING"].values, model.pr
 
 
 
-## �ܽ�
-��ʵ�ڻ���ѧϰ��һ��Ӧ�ý���������һ�£�����˵��ϴһ�¡�����û��ϵ��������֪��ûɶ����ϵġ�
+## 总结
+其实在机器学习这一节应该将数据正则一下，或者说清洗一下。但是没关系，本来就知道没啥好拟合的。
 
-���ڱ��ĵ�notebookҲ��Դ�������档�п���д��
+关于本文的notebook也在源代码里面。有空在写。
 
 
-## ���
-��ʵ���ﲻӦ�û���������ģ�ͣ���Ϊ�����ĳɼ����ȷǳ��ߣ����߻��кܶ���������ŵĽ�����������ۻع黹�Ƿ���Ľ�������ܾ�ȷ���������ս��(����Ҳ�п������ҵ�ˮƽ����)��
+## 后记
+其实这里不应该基于特征做模型，因为赛果的成绩精度非常高，再者会有很多噪音会干扰的结果，所以无论回归还是分类的结果都不能精确的命中最终结果(不过也有可能是我的水平有限)。
 
-��Ȼ����Ϊɶ��дƪ���£���֤һ�¿���
+既然不行为啥还写篇文章？论证一下咯。
 
-���Ǿ͸��˶��ԣ��Ҿ��û��ǿ�������һ�������и��ʵģ�û��Ҫ��ô��ȷ����ô�������ʵĹؼ����ھ�ֵ�ع飬��ÿƥ�����ٶȻ�Χ����һ����ֵ�����𶯣�����������Ȥ����������һ����ϸ�µķ����ɡ�
+但是就个人而言，我觉得还是可以提升一定的命中概率的，没必要那么精确，那么提升概率的关键在于均值回归，即每匹马的速度回围绕着一个均值来回震动，如果大家有兴趣，我们来做一个更细致的分析吧。
 
