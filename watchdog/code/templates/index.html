@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Watch Dog</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <style>
+        .container {
+            text-align: center;
+        }
+
+        img {
+            width: 80%;
+        }
+        button{
+            padding: 10px 40px;
+            background: #09F;
+            color: #FFF;
+            text-decoration: none;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function watch() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "/watch", true)
+            xhttp.onloadend = e => {
+                var resp = xhttp.responseText
+                alert(resp)
+                if (resp == "ok") {
+                    // 刷新页面
+                    window.location.reload()
+                }
+            };  
+            xhttp.send()
+        }
+
+    </script>
+</head>
+<body>
+<div class="container">
+    <img src="/static/latest.jpeg" alt="">
+    <br>
+    <button onclick="watch()">关门了吗？</button>
+</div>
+
+</body>
+</html>

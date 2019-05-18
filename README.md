@@ -14,11 +14,12 @@ http://blog.51cto.com/youerning
 9. [d3js从入门到出门](https://github.com/youerning/blog/tree/master/d3js)
 10. [pandas从入门到上楼](https://github.com/youerning/blog/tree/master/pandas)
 11. [Python也能高并发](https://github.com/youerning/blog/tree/master/asyncio)
-11. [Pyalgotrade源码阅读](https://github.com/youerning/blog/tree/master/pyalgotrade-code-read)
-12. [数据挖掘指南之推荐系统读书笔记](https://github.com/youerning/blog/tree/master/data-mining_chapter01)
-13. [Jenkins流水线持续集成/发布](https://github.com/youerning/blog/tree/master/cicd)
-14. [机器学习与赛马](https://github.com/youerning/blog/tree/master/ml_and_horse_race)
-15. [termux软件安装-持续更新](https://github.com/youerning/blog/tree/master/termux)
+12. [Pyalgotrade源码阅读](https://github.com/youerning/blog/tree/master/pyalgotrade-code-read)
+13. [数据挖掘指南之推荐系统读书笔记](https://github.com/youerning/blog/tree/master/data-mining_chapter01)
+14. [Jenkins流水线持续集成/发布](https://github.com/youerning/blog/tree/master/cicd)
+15. [机器学习与赛马](https://github.com/youerning/blog/tree/master/ml_and_horse_race)
+16. [termux软件安装-持续更新](https://github.com/youerning/blog/tree/master/termux)
+17. [旧手机威力之看门狗](https://github.com/youerning/blog/tree/master/watchdog)
 
 
 非技术文章列表
