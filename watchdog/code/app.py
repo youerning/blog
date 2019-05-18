@@ -9,7 +9,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    # 为了不缓存图片
+    now = datetime.now()
+    timestamp = now.timestamp()
+    return render_template('index.html', timestamp=timestamp)
 
 
 @app.route("/watch")

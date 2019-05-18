@@ -43,7 +43,8 @@
 </head>
 <body>
 <div class="container">
-    <img src="/static/latest.jpeg" alt="">
+    <!-- 加个时间戳为了强制更新图片 -->
+    <img src="/static/latest.jpeg?{{timestamp}}" alt="">
     <br>
     <button onclick="watch()">关门了吗？</button>
 </div>
