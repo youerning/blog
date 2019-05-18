@@ -1,15 +1,6 @@
-# 旧手机威力之看门狗
+	# 旧手机威力之看门狗
 
-不知道大家是否有关门后又回到门口检查门是否关了的经历，反正我有，作为一个懒人应该采取一些措施，在不往回跑的前提下检查门是否关了。
-
-> 几乎没有忘记关过门，但是强迫症逼死人:(
-
-**解决方案**
-
-远程控制联网手机在房内对门口拍照，然后查看图片检查是否关门. 远程方面使用web方式.
-
-这里放一张截图:
-![door](img/door.jpg)
+or](img/door.jpg)
 
 如图所示，如果关门了，通过照片能看出是否关门了，这里拍摄的是打了小锁的情况。
 
@@ -148,7 +139,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    # 为了不缓存图片
+    now = datetime.now()
+    timestamp = now.timestamp()
+    return render_template('index.html', timestamp=timestamp)
 
 
 @app.route("/watch")
@@ -233,7 +227,8 @@ index.html
 </head>
 <body>
 <div class="container">
-    <img src="/static/latest.jpeg" alt="">
+    <!-- 加个时间戳为了强制更新图片 -->
+    <img src="/static/latest.jpeg?{{timestamp}}" alt="">
     <br>
     <button onclick="watch()">关门了吗？</button>
 </div>
