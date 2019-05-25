@@ -20,6 +20,7 @@ http://blog.51cto.com/youerning
 15. [机器学习与赛马](https://github.com/youerning/blog/tree/master/ml_and_horse_race)
 16. [termux软件安装-持续更新](https://github.com/youerning/blog/tree/master/termux)
 17. [旧手机威力之看门狗](https://github.com/youerning/blog/tree/master/watchdog)
+18. [机器学习或深度学习](https://github.com/youerning/blog/tree/master/ai)
 
 
 非技术文章列表
