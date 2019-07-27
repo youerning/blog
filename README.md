@@ -1,6 +1,10 @@
 # 又耳笔记
-## blog地址
+## 其他地址
 http://blog.51cto.com/youerning
+
+https://www.toutiao.com/c/user/2326195698407587/#mid=1640198859939847
+
+公众号: 又耳笔记(youerbiji)
 
 技术文章列表
 1. [使用Prometheus+grafana打造高逼格监控平台](https://github.com/youerning/blog/tree/master/prometheus)
