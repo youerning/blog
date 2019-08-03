@@ -25,7 +25,8 @@ https://www.toutiao.com/c/user/2326195698407587/#mid=1640198859939847
 16. [termux软件安装-持续更新](https://github.com/youerning/blog/tree/master/termux)
 17. [旧手机威力之看门狗](https://github.com/youerning/blog/tree/master/watchdog)
 18. [机器学习或深度学习](https://github.com/youerning/blog/tree/master/ai)
-18. [python股票市场数据探索指北](https://github.com/youerning/blog/tree/master/stock_data)
+19. [python股票市场数据探索指北](https://github.com/youerning/blog/tree/master/stock_data)
+19. [用Python徒手撸一个股票回测框架](https://github.com/youerning/blog/tree/master/backtest)
 
 
 非技术文章列表
