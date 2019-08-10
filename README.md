@@ -26,7 +26,8 @@ https://www.toutiao.com/c/user/2326195698407587/#mid=1640198859939847
 17. [旧手机威力之看门狗](https://github.com/youerning/blog/tree/master/watchdog)
 18. [机器学习或深度学习](https://github.com/youerning/blog/tree/master/ai)
 19. [python股票市场数据探索指北](https://github.com/youerning/blog/tree/master/stock_data)
-19. [用Python徒手撸一个股票回测框架](https://github.com/youerning/blog/tree/master/backtest)
+20. [用Python徒手撸一个股票回测框架](https://github.com/youerning/blog/tree/master/backtest)
+21. [一个完整的量化交易策略之理论篇](https://github.com/youerning/blog/tree/master/quant1)
 
 
 非技术文章列表
