@@ -7,8 +7,8 @@
 - 词法分析
 - 语法分析与解释执行
 - 参考链接
-- 后记
 - 这有什么用
+- 后记
 - 源代码
 
 
@@ -433,7 +433,9 @@ if __name__ == "__main__":
 
 
 ## 源代码
-https://github.com/youerning/blog/tree/master/new_program
+[https://github.com/youerning/blog/tree/master/new_program](https://note.youdao.com/)
 
 
-如果期待后续文章可以关注我的同名微信公众号，同名头条号，github。
+如果期待后续文章可以关注我的微信公众号(又耳笔记)，头条号(又耳笔记)，github。
+
+
