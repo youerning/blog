@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据流可视化监控</title>
+    <!-- <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.css')}}"> -->
+    <script src="{{url_for('static', filename='js/d3.js')}}"></script>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            text-align: center;
+            background-color: #3A393F;
+            font-family: sans-serif;
+            color: white;
+        }
+
+        path {
+            fill: none;
+            stroke:7D7D7D;
+        }
+
+        path.flow {
+            fill:transparent;
+            stroke:#6D9459;
+            stroke-dasharray: 20 4;
+            animation: flowpath 4s linear infinite;
+        }
+
+        @keyframes flowpath {
+            from {
+                stroke-dashoffset: 100;
+            }
+
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        text {
+            stroke: white;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div>
+        <svg id="d3tree"></svg>
+    </div>
+    <!-- <div class="msg-box">
+        xxxx is down!!!
+    </div> -->
+
+
+    <script>
+        // const width = document.body.clientWidth;
+        // const height = document.body.clientHeight;
+        const width = 800;
+        const height = 400;
+        const margin = {top: 10, left: 100, bottom:10, right:10}
+        const innerWidth = width - margin.left - margin.right;
+        const innerHeight = height - margin.top - margin.bottom;
+        const failedColor = "#e92214";
+        const successColor = "#a6e287";
+        const nodeRadius = 8;
+
+        const svg = d3.select("svg#d3tree")
+              svg.attr("width", innerWidth)
+                 .attr("height", innerHeight)
+
+        const zoomG = svg.append("g");
+        const g = zoomG.append("g").attr("transform", `translate(${margin.left} ${margin.top})`);
+        
+              // 增加缩放拖动的操作  
+              svg.call(d3.zoom().on("zoom", () => {
+                zoomG.attr("transform", d3.event.transform)            
+            }));
+
+        var debugLiks;
+        var debugRoot;
+
+        const render = (data) => {
+            const myTree = d3.tree().size([innerWidth - 400, innerHeight]);
+            const root = myTree(data);
+            const links = root.links();
+            const nodes = root.descendants();
+
+            // debug
+            debugLiks = links;
+            debugRoot = root;
+
+            // 绘制links
+            g.selectAll("path").data(links)
+                .enter().append("path")
+                    .attr("d", d3.linkHorizontal()
+                        .x(d => d.y)
+                        .y(d => d.x)
+                    )
+
+            // 绘制流动的线条
+            g.selectAll("path.flow").data(links)
+                .enter().append("path")
+                    // 注意!x 对于 y, 这很奇葩
+                    // 通过linkHorizontal将links里面的数据转换成图中对应的path的绘制路径
+                    .attr("d", d3.linkHorizontal()
+                        .x(d => d.y)
+                        .y(d => d.x)
+                    )
+                    .attr("class", "flow")
+            
+            // 绘制节点
+            const circles = g.selectAll("circle").data(nodes, d=>d.data.id)
+            const circleFill = d => d.data.status ? successColor:failedColor
+
+            circles
+                .enter().append("circle")
+                    .attr("r", 0)
+                    // 注意!x 对于 y, 这很奇葩
+                    .attr("cx", d => d.y)
+                    .attr("cy", d => d.x)
+                    .attr("fill", circleFill)
+                    // 为节点的圆圈加一个动画
+                    // 表示节点的圆圈在两秒内从半径0变到nodeRadius(8)
+                    .transition()
+                      .duration(2000)
+                      .attr("r", nodeRadius)
+            circles
+                .merge(circles)
+                  // 为节点的的状态转换增加一个动画
+                  // 表示节点的圆圈在1秒内将颜色变为circleFill("#e92214")
+                  .transition()
+                    .duration(1000)
+                    .attr("fill", circleFill)
+
+
+            // 绘制文字
+            g.selectAll("text").data(nodes)
+                .enter().append("text")
+                    .attr("x", d => d.y)
+                    .attr("y", d => d.x)
+                    // 如果该节点有children字段，则说明有子节点，那么x方向的位置不变
+                    // 反之，位置向右移动10个像素
+                    .attr("dx", d => d.children? 0: 10)
+                    // 如果该节点有children字段，则说明有子节点，那么y方向的位置向上移动10个像素
+                    // 反之，位置向下移动5个像素
+                    .attr("dy", d => d.children? -10: 5)
+                    // 如果该节点有没有parent,则说明是root节点，文字的对其方式为end
+                    // 如果该节点有children字段，则说明有子节点，文字的对其方式为middle
+                    // 反之，文字的对其方式为middle
+                    .attr("text-anchor", d => {
+                        if (!d.parent) {
+                            return "end"
+                        } else if (d.children) {
+                            return "middle"
+                        } else {
+                            return "start"
+                        }
+                    })
+                    .attr("font-size",  "1em")
+                    .text(d=> d.data.name)
+
+        };
+
+        // 伪造数据
+        // status: 1代表true,即成功。 0反之。
+        var rawData = [
+            {name: "client", parent: "", status: 1},
+            {name: "nginx1", parent: "client", status: 1},
+            {name: "nginx2", parent: "client", status: 1},
+            {name: "backend1", parent: "nginx1", status: 1},
+            {name: "backend2", parent: "nginx2", status: 1},
+            {name: "backend11", parent: "backend1", status: 1},
+            {name: "backend12", parent: "backend1", status: 1},   
+            {name: "backend21", parent: "backend2", status: 1},
+            {name: "backend22", parent: "backend2", status: 1},   
+        ]
+
+        // stratify处理完成的数据，至少需要两个字段: id, children
+        // 通过链式的调用id方法, 可以传入一个回调函数处理数据中的每一行，函数应该返回这一行数据作为id的数值
+        // 通过链式的调用parentId, 可以传入一个回调函数处理数据中的每一行，函数应该返回这一行数据它指向的parent id
+        const data = d3.stratify()
+                         .id(d => d.name)
+                         .parentId(d => d.parent)
+                         (rawData);
+
+
+
+        // var rawData = {data:{id: "client"},
+        //             children: [
+        //                 {data: {id: "nginx1"},
+        //                  children: [
+        //                      {data: {id: "backend1"},
+        //                       children: [
+        //                           {data: {id: "backend11"}},
+        //                           {data: {id: "backend12"}}
+        //                       ]
+        //                     }
+        //                  ]
+        //                 },
+        //                 {data: {id: "nginx2"},
+        //                  children: [
+        //                      {data: {id: "backend2"},
+        //                       children: [
+        //                           {data: {id: "backend21"}},
+        //                           {data: {id: "backend22"}}
+        //                       ]
+        //                     }
+        //                  ]
+        //                 }
+        //             ]};
+        // // 由于上面的数据已经有对应的id, children字段，所以不需要额外的处理，可以直接传给hierarchy.
+        // const data = d3.hierarchy(rawData)
+
+        render(data)
+
+        const update = () => {
+            var randIndex = Math.floor(Math.random() * rawData.length);
+                var randStatus = Math.random() > 0.5;
+                
+                rawData[randIndex].status = randStatus;
+
+                const data2 = d3.stratify()
+                                .id(d => d.name)
+                                .parentId(d => d.parent)
+                                (rawData);
+
+                render(data)
+        };
+
+        setTimeout(() => {
+            setInterval(() => {
+                update()
+            }, 1000);
+        }, 3000);
+        
+    </script>
+</body>
+</html>
