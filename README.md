@@ -1,4 +1,6 @@
 # 又耳笔记
+关于技术的一些零碎想法, 比较随意。
+
 ## 其他地址
 http://blog.51cto.com/youerning
 
@@ -6,7 +8,7 @@ https://www.toutiao.com/c/user/2326195698407587/#mid=1640198859939847
 
 公众号: 又耳笔记(youerbiji)
 
-技术文章列表
+## 技术文章列表
 1. [使用Prometheus+grafana打造高逼格监控平台](https://github.com/youerning/blog/tree/master/prometheus)
 2. [用python炒股](https://github.com/youerning/blog/tree/master/python-trade)
 3. [数据分析之A股市场技术分析是否可行](https://github.com/youerning/blog/tree/master/stock-analysis)
@@ -32,7 +34,11 @@ https://www.toutiao.com/c/user/2326195698407587/#mid=1640198859939847
 23. [数据流监控可视化1树状结构](https://github.com/youerning/blog/tree/master/dataflow-vis)
 
 
-非技术文章列表
+## Python玩股票系列
+暂时没有股票交易框架，也没有量化交易体系，只是将Python作为一个辅助工具检索股票，仅此而已，不一定能赚钱。
+
+
+## 非技术文章列表
 1. [股市投机迷思](https://github.com/youerning/blog/tree/master/stock-in-thought)
 
 如果觉得不错，并有所收获，请我喝杯茶呗, 多少都可以.
