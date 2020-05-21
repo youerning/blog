@@ -265,6 +265,7 @@ def create_html_content():
 ## 源代码地址
 [https://github.com/youerning/blog/tree/master/sendmail](https://github.com/youerning/blog/tree/master/sendmail)
 
+如果期待后续文章可以关注我的微信公众号(又耳笔记)，头条号(又耳笔记)，github。
 
 
 ## 后记
