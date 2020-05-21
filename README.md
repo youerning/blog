@@ -32,6 +32,7 @@ https://www.toutiao.com/c/user/2326195698407587/#mid=1640198859939847
 21. [一个完整的量化交易策略之理论篇](https://github.com/youerning/blog/tree/master/quant1)
 22. [从无到有用Python写一门编程语言1](https://github.com/youerning/blog/tree/master/new_program)
 23. [数据流监控可视化1树状结构](https://github.com/youerning/blog/tree/master/dataflow-vis)
+24. [用Python发一封图文并茂的邮件](https://github.com/youerning/blog/tree/master/sendmail)
 
 
 ## 代码玩股票系列
