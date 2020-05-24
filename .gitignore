@@ -67,3 +67,5 @@ benchmarks/bench_covertype_data/
 # Used by py.test
 .cache
 __pycache__
+
+.vscode/
