@@ -1,4 +1,4 @@
-# 用Python选一个自己的股票池
+# 用Python选一个自己的股票池1
 人的精力是有限的，所以将目光聚焦在更小的范围内，也许能够得到性价比最高的效果。
 
 股票很多很多，但是我们关心的也许并不多，将自己关心或者符合自己买入股票的前提条件的股票纳入一个股票池，然后再一定时间内只关注这些股票，也许是一个不错的选择，
@@ -517,6 +517,8 @@ def select_by_float_market_value(trade_date, top_size=20):
 
 ## 源代码地址
 [用Python选一个自己的股票池1](https://github.com/youerning/blog/tree/master/stock_pool)
+
+如果期待后续文章可以关注我的微信公众号(又耳笔记)，头条号(又耳笔记)，github(youerning).
 
 ## 参考链接
 [如何优雅高效的撸数据？](https://tushare.pro/document/1?doc_id=230)
