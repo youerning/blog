@@ -19,7 +19,7 @@ import concurrent.futures as futures
 
 
 DATE_FORMAT = "%Y%m%d"
-TS_TOKEN = "065af35c25ac588d29f122a224fc7facb22b2cbe6fb3cac8f730e4c2"
+TS_TOKEN = "<你的Token>"
 ts.set_token(TS_TOKEN)
 pro = ts.pro_api(TS_TOKEN)
 
