@@ -13,6 +13,7 @@ from mplfinance.original_flavor import candlestick_ohlc
 from matplotlib.pylab import date2num
 from glob import glob
 from os import path
+from datetime import timedelta
 
 
 # ggplot好看点
@@ -24,8 +25,10 @@ ts.set_token(TS_TOKEN)
 pro = ts.pro_api(TS_TOKEN)
 
 
-def ohlc_plot(df):
-    ax = plt.gca()
+def ohlc_plot(df, ax=None):
+    if ax is None:
+        ax = plt.gca()
+
     data_lst = []
     for date, row in df.iterrows():
         t = date2num(date)
@@ -51,6 +54,14 @@ def load_all_local_data(data_path, tail_size=None):
         ret[ts_code] = df
 
     return ret
+
+def cos(vector_a, vector_b):
+    vector_a = np.mat(vector_a)
+    vector_b = np.mat(vector_b)
+    num = float(vector_a * vector_b.T)
+    denom = np.linalg.norm(vector_a) * np.linalg.norm(vector_b)
+    cos = num / denom
+    return cos
 
 def select_doji():
     # fp = "by_ts_code/600249.SH-.csv"
@@ -227,12 +238,163 @@ def select_by_float_market_value(trade_date, top_size=20):
     print(ret[-top_size:])
     return ret[-top_size:]
 
-def select_by_similarity():
-    pass
+def select_by_similarity(data_path, code_name, top_size=10):
+    day_range = 100
+    # 交易日的起始截至时间做大不能超过这个间隔
+    max_delta = timedelta(days=7)
+
+    all_df = load_all_local_data(data_path, tail_size=day_range)
+    # code_name = "000001.SZ"
+    if code_name not in all_df:
+        print("要比对的股票不在当前下载的股票数据中")
+
+    vector_a = all_df[code_name].pct_chg
+    start_date_a = vector_a.index[0]
+    end_date_a = vector_a.index[-1]
+
+    ret = []
+    for ts_code, df in all_df.items():
+        if ts_code == code_name:
+            continue
+
+        if len(df) < 100:
+            print("股票[%s]交易日不足%s" % (ts_code, day_range))
+            continue
+
+        vector_b = df.pct_chg
+        start_date_b = vector_b.index[0]
+        end_date_b = vector_b.index[-1]
+
+        # 计算开始结束交易日之间的时间间隔
+        start_delta = abs(start_date_a - start_date_b)
+        end_delta = abs(end_date_a - end_date_b)
+        if start_delta > max_delta or end_delta > max_delta:
+            print("股票[%s]与股票[%s]交易日间隔过大!" % (ts_code, code_name))
+            continue
+
+        cos_similarity = cos(vector_a, vector_b)
+        ret.append((ts_code, cos_similarity))
+
+    ret.sort(key=lambda x:x[1])
+    print("相似度前%s的结果如下" % top_size)
+    print(ret[-top_size:])
+
+    print("最不相似的股票前%s的结果如下:" % top_size)
+    print(ret[:top_size])
+    return ret[-top_size:]
+
+def select_by_trend(data_path, code_name, ma_lst=None):
+    fp = path.join(data_path, ("%s-.csv" % code_name))
+    if not path.exists(fp):
+        print("股票[%s]不存在本地数据" % code_name)
+ 
+    df = pd.read_csv(fp, index_col="trade_date", parse_dates=["trade_date"])
+    ohlc_columns = ["open", "high", "low", "close"]
+    df = df[ohlc_columns]
+
+    if ma_lst is None:
+        ma_lst = [5, 20, 60, 120, 220]
+        
+    max_ma = max(ma_lst)
+    ma_name_lst = []
+    for ma in ma_lst:
+        ma_name = "ma_%s" % ma
+        ma_name_lst.append(ma_name)
+        df[ma_name] = df.close.rolling(ma).mean()
+
+    # 设置图片大小
+    plt.figure(figsize=(10,6))
+
+    # 过滤掉没有最长均线数据的交易日
+    df2 = df.iloc[max_ma:]
+
+    # 绘制k线图
+    ax = ohlc_plot(df2[ohlc_columns])
+
+    # 绘制均线图
+    df2[ma_name_lst].plot(ax=ax)
+    plt.savefig("ma.png")
+    plt.show()
+
+
+def select_by_nobody(data_path, code_name, ma_lst=None, threshold=20, atr_period=14, diff_ma=20):
+    fp = path.join(data_path, ("%s-.csv" % code_name))
+    if not path.exists(fp):
+        print("股票[%s]不存在本地数据" % code_name)
+ 
+    df = pd.read_csv(fp, index_col="trade_date", parse_dates=["trade_date"])
+    ohlc_columns = ["open", "high", "low", "close"]
+    df = df[ohlc_columns]
+
+    if ma_lst is None:
+        ma_lst = [5, 20, 60, 120, 220]
+        
+    max_ma = max(ma_lst)
+    # 计算均线
+    ma_name_lst = []
+    for ma in ma_lst:
+        ma_name = "ma%s" % ma
+        ma_name_lst.append(ma_name)
+        df[ma_name] = df.close.rolling(ma).mean()
+
+    # 默认以20日最高价作为上突破阈值, 20日最低价作为下突破阈值
+    threshold_high_name = "threshold_high%s" % threshold
+    threshold_low_name = "threshold_low%s" % threshold
+    df[threshold_high_name] = df.high.rolling(threshold).max()
+    df[threshold_low_name] = df.low.rolling(threshold).min()
+
+
+    # 默认atr的计算时间范围是14天
+    # talib一般通过包装好的whl包安装
+    # 参考: https://www.lfd.uci.edu/~gohlke/pythonlibs/
+    import talib
+    atr_name = "atr%s" % atr_period
+    df[atr_name] = talib.ATR(df.high, df.low, df.close, atr_period)
+
+    # 默认计算乖离率收盘价与20日均线的差值, 然后将这个差值比上收盘价, 这个值被称为乖离率
+    # 通过乖离率可以观察收盘价与均值之间的差异，差异越大则可能回弹的概率比较大
+    if diff_ma not in ma_lst:
+        ma_name = "ma%s" % diff_ma
+        df[ma_name] = df.close.rolling(ma).mean()
+
+    diff_name = "diff%s" % diff_ma
+    df[diff_name] = (df["close"] - df[ma_name]) / df["close"]
+
+    # 设置图片大小
+    plt.figure(figsize=(10,18))
+
+    # 配置子图
+    ax1 = plt.subplot(311)
+    ax2 = plt.subplot(312)
+    ax3 = plt.subplot(313)
+
+    # 过滤掉没有最长均线数据的交易日
+    df2 = df.iloc[max_ma:]
+
+    # 绘制k线图
+    ohlc_plot(df2[ohlc_columns], ax1)
+
+    # 绘制均线图
+    df2[ma_name_lst].plot(ax=ax1)
+
+    # 绘制上下最高最低突破线
+    df2[[threshold_high_name, threshold_low_name]].plot(ax=ax1)
+
+    # 绘制atr
+    df2[atr_name].plot(ax=ax2)
+
+    # 绘制乖离率
+    df2[diff_name].plot(ax=ax3)
+
+    plt.savefig("nobody.png")
+    plt.show()
 
 
 if __name__ == "__main__":
     # select_doji()
     # select_by_amount("by_trade_date")
-    select_by_float_market_value("20200522")
+    # select_by_float_market_value("20200522")
+    # select_by_similarity("by_trade_date", "000001.SZ")
+    # select_by_trend("by_trade_date", "000001.SZ")
+    select_by_nobody("by_trade_date", "000001.SZ")
     # pass    

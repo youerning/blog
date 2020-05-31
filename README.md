@@ -38,7 +38,8 @@ https://www.toutiao.com/c/user/2326195698407587/#mid=1640198859939847
 ## 代码玩股票系列
 虽然已经写了一些关于Python与股票的文章，但是之前总想通过一篇文章将一个部分完整的覆盖，可是理想很丰满现实很骨感，技术在不断的更新,思想在不断的改变，根本就不可能完全的覆盖，所以这个系列的文章可能更短小精悍，或者说流水账式的记录自己关于代码与股票的一些思考，之所以不是Python与股票，我想是因为光是Python远远不够。
 
-1. [用Python选一个自己的股票池1](https://github.com/youerning/blog/tree/master/stock_pool)
+1. [用Python选一个自己的股票池1](https://github.com/youerning/blog/tree/master/stock_pool/post1.md)
+2. [用Python选一个自己的股票池2](https://github.com/youerning/blog/tree/master/stock_pool/post2.md)
 
 
 ## 非技术文章列表
