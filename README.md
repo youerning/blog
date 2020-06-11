@@ -42,6 +42,11 @@ https://www.toutiao.com/c/user/2326195698407587/#mid=1640198859939847
 2. [用Python选一个自己的股票池2](https://github.com/youerning/blog/tree/master/stock_pool/post2.md)
 
 
+## Python造轮子系列
+1. [从tcp开始，用Python写一个web框架1](https://github.com/youerning/blog/tree/master/web_framework/post1.md)
+2. [从tcp开始，用Python写一个web框架2](https://github.com/youerning/blog/tree/master/web_framework/post2.md)
+3. [从tcp开始，用Python写一个web框架完整版](https://github.com/youerning/blog/tree/master/web_framework/post3.md)
+
 ## 非技术文章列表
 1. [股市投机迷思](https://github.com/youerning/blog/tree/master/stock-in-thought)
 
