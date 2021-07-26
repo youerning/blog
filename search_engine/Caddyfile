@@ -1,0 +1,9 @@
+http://localhost {
+	root * frontend/dist
+	reverse_proxy /api/* localhost:8000
+	file_server
+}
+
+
+
+
