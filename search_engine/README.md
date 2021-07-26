@@ -582,7 +582,7 @@ async def search(payload: SearchPayload = Body(
 > 即使没有linux环境，用git bash也是可以的, 不过使用powershell会有颜色高亮，比较好看
 
 自带API文档页面截图
-[open api](./img/openapi.png)
+[open api](img/openapi.png)
 
 ## 前端
 如果你终于搞懂了react全家桶以及dva，那么就用antd pro吧，省事! 
@@ -704,6 +704,10 @@ export default () => {
 代码写得不够健壮，但是实现心态有点崩了，我发誓我前两个月antd pro还写得很顺的，这个数据流新引入的useRequest, useModel一下子看不懂，所以就这样吧，卧槽。。。。所以还是得写点文章，写点项目把代码留下来，以后直接抄就行。
 
 一些配置文件具体配置就看源代码，只配置了自己用的。
+
+最后展示一下效果:
+[frontend](img/frontend.png)
+
 
 ### 打包
 

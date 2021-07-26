@@ -24,8 +24,8 @@ console_handler.setLevel(LOG_LEVEL)
 
 
 # 测试时不使用所有数据
-files = glob("ChineseLyrics/test.jsonx")
 # files = glob("ChineseLyrics/test.jsonx")
+files = glob("ChineseLyrics/*.json")
 
 docs = []
 for file in files:
