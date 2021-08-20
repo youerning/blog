@@ -52,6 +52,7 @@ https://www.toutiao.com/c/user/2326195698407587/#mid=1640198859939847
 
 ## 非技术文章列表
 1. [股市投机迷思](https://github.com/youerning/blog/tree/master/stock-in-thought)
+2. [《趋势永存》-《海龟交易法则》读后感](https://github.com/youerning/blog/tree/master/trending_invest)
 
 如果觉得不错，并有所收获，请我喝杯茶呗, 多少都可以.
 
