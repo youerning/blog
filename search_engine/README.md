@@ -1,4 +1,6 @@
 # 从后端到前端: 写一个全文搜索引擎(Python)
+[![Deploy](https://button.deta.dev/1/svg)](https://go.deta.dev/deploy)
+
 研究了一下搜索引擎的大概原理，一个可以商用的搜索引擎是比较复杂的，但是搜索引擎的内核(自认为的)还是可以写写的。
 
 > What i cannot create, i do not understand
@@ -710,11 +712,18 @@ export default () => {
 
 
 ### 打包
+```
+yarn build
+```
+
+打包之后会有一个dist目录,里面有index.html, umi.js, umi.css
 
 
 ## 部署
-下次用docker吧，这次就是脚本。
+其实docker会是非常不错的选择的。
 
+
+## 使用caddy部署
 caddy版本: v2.4.3 h1:Y1FaV2N4WO3rBqxSYA8UZsZTQdN+PwcoOcAiZTM8C0I=
 
 配置文件Caddyfile
@@ -737,6 +746,285 @@ sh scripts/start_backend.sh
 ```
 sh scripts/start_server.sh
 ```
+
+### deta部署
+非常推荐的一个小项目的部署方案，因为免费版本也就内存128mb, 但是做一个demo还是不错的。
+
+#### 注册登录
+注册登录之后会一个账号，还有一个project key，这里暂时用不到
+
+
+#### 安装deta
+参考 https://docs.deta.sh/docs/cli/install
+
+
+#### 创建项目
+```powershell
+deta new search_engine --python
+```
+
+创建完成之后会给一个自动生成的域名
+```
+Successfully created a new micro
+{
+        "name": "search_engine",
+        "runtime": "python3.7",
+        "endpoint": "https://e0h61n.deta.dev",
+        "visor": "enabled",
+        "http_auth": "disabled"
+}
+```
+
+#### 目录结构
+```
+search_engine
+│   index.html
+│   main.py
+│   requirements.txt
+│   test.json
+│
+├───.deta
+│       prog_info
+│       state
+│
+├───static
+│       umi.css
+│       umi.js
+```
+
+每个deta项目(Python)需要一个main.py(即上文的app.py)以及requirements.txt
+
+#### 代码修改
+因为deta只是部署一个app，并不是一个独立的服务器，所以需要做一些修改，这里需要修改两个地方。
+1. main.py
+2. index.html
+
+##### main.py
+```
+import json
+import math
+import logging
+from glob import glob
+from typing import List, Optional, Union, Tuple
+from collections import defaultdict
+from functools import lru_cache
+
+import jieba
+from fastapi import FastAPI, Body
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import JSONResponse, HTMLResponse
+from pydantic import BaseModel, Field
+
+
+LOG_LEVEL = logging.DEBUG
+logger = logging.getLogger(__name__)
+fmt = logging.Formatter("%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s")
+console_handler = logging.StreamHandler()
+console_handler.setFormatter(fmt)
+logger.addHandler(console_handler)
+
+logger.setLevel(LOG_LEVEL)
+console_handler.setLevel(LOG_LEVEL)
+
+files = glob("*json")
+
+# 因为index.html部署之后就不会更改了，所以直接最开始就加载到内存
+with open("index.html") as rf:
+    html = rf.read()
+
+docs = []
+for file in files:
+    with open(file, encoding="utf8") as rf:
+        data = json.load(rf)
+        for doc in data:
+            # 将歌词的文本列表转换成一个字符串
+            lyric = "".join(doc["lyric"])
+            # 去除特殊符号
+            lyric = "".join(filter(str.isalnum, lyric))
+            # 分词
+            lyric2 = list(jieba.cut_for_search(lyric))
+            doc["lyric2"] = lyric2
+
+        docs.extend(data)
+
+index = defaultdict(set)
+for doc_index, doc in enumerate(docs):
+    for word in doc["lyric2"]:
+        index[word].add(doc_index)
+
+
+def tf(word: str, doc_index: List[str], docs: List[dict]) -> float:
+    return docs[doc_index]["lyric2"].count(word) / len(docs[doc_index]["lyric2"])
+
+@lru_cache()
+# 因为参数需要哈希缓存，所以docs, index不放在参数中传递了
+def idf(word: str) -> float:
+    # 多少文档包含word
+    doc_included = len(index.get(word, []))
+    return math.log(doc_included / len(docs))
+
+def tf_idf(word: str, doc_index: List[str], docs: List[List[str]], index: List[dict]) -> float:
+    return tf(word, doc_index, docs) * idf(word)
+
+
+def full_text_search(keywords: List[str], docs: List[dict], index: dict) -> List[Tuple]:
+    doc_indexs = list()
+    for keyword in keywords:
+        doc_indexs.extend(index.get(keyword, []))
+
+    if not doc_indexs:
+        return []
+
+    # 所有包含关键字的doc_index去重
+    doc_indexs = set(doc_indexs)
+
+    scores = []
+    for doc_index in doc_indexs:
+        keywords_scores = []
+
+        for keyword in keywords:
+            score = tf_idf(keyword, doc_index, docs, index)
+            keywords_scores.append(score)
+
+        scores.append((doc_index, sum(keywords_scores)))
+
+    return sorted(scores, key=lambda x:x[1], reverse=True)
+
+
+
+app = FastAPI(
+    title="Simple Full-text search engine",
+    version="1.0.0",
+)
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+# 请求数据结构
+class SearchPayload(BaseModel):
+    query: List[str]
+    size: int = Field(10, le=100, gt=0, description="The query size must be greater than zero")
+
+
+exmaples = {
+    "one keyword": {
+        "summary": "A normal example",
+        "description": "search one keyword",
+        "value": {
+            "query": ["梦想"]
+        },
+    },
+    "two keyword": {
+        "summary": "A normal example",
+        "description": "search one keyword",
+        "value": {
+            "query": ["梦想", "美丽"]
+        },
+    },
+    "invalid data type": {
+        "summary": "Invalid data is rejected with an error",
+        "value": {
+             "query": "梦想"
+        },
+    },
+    "invalid data size": {
+        "summary": "Invalid data is rejected with an error",
+        "value": {
+             "query": ["梦想"],
+             "size": -1
+        },
+    },
+}
+
+# 响应数据结构
+class ResponseModel(BaseModel):
+    data: list
+
+class SuccessResponseModel(ResponseModel):
+    status: str = "ok"
+
+class ErrorResponseModel(BaseModel):
+    status: str = "error"
+    msg: str
+
+
+@app.get("/", response_class=HTMLResponse)
+def index_page():
+    return html
+
+
+@app.post("/api/search",
+    status_code=200,
+    response_model=SuccessResponseModel,
+    response_model_exclude_none=True,
+    responses={501: {"model": ErrorResponseModel}})
+async def search(payload: SearchPayload = Body(
+    ..., examples=exmaples
+)):
+    query = payload.query
+    size = payload.size
+    # 仅返回指定数量结果
+    try:
+        ret = full_text_search(query, docs, index)[:size]
+    except Exception:
+        msg = "unexpected search error"
+        logger.exception(msg)
+        return JSONResponse(status_code=501, content={"status": "error", "msg": msg})
+
+    data = []
+    for doc_index, score in ret:
+        value = {}
+        doc = docs[doc_index]
+
+        value["doc"] = doc
+        
+        value["title"] = doc["name"]
+        value["key"] = doc["name"]
+        value["subTitle"] = doc.get("singer", "")
+        value["score"] = score
+        data.append(value)
+    # logger.debug(data)
+
+    return SuccessResponseModel(data=data)
+```
+
+##### index.html
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="/static/umi.css" />
+    <script>
+      window.routerBase = "/";
+    </script>
+    <script>
+      //! umi version: 3.5.13
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="/static/umi.js"></script>
+  </body>
+</html>
+```
+这里主要是将js,css文件的访问路径从根目录(/)改到/static目录
+> 当然了，umijs有配置项可以配置的，这里不增加额外的文件了。
+
+### demo地址
+自动生成的域名
+https://e0h61n.deta.dev/
+
+自定义的域名
+http://youer_search_engine.deta.dev/
+
+如果你有域名的话，还可以使用自己的域名。
+
+因为资源有限制，所以这里的测试json数据非常小，如果在初始化之前花费太多时间(资源)，那么这个微服务就会挂起，后台的逻辑应该是"卧槽，这么加载这么久，重新加载试试", 所以一直在重新加载，那么就不能正常运行。
 
 
 ## 总结
