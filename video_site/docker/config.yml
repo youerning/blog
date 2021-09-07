@@ -1,0 +1,13 @@
+http:
+  routers:
+    traefik:
+      middlewares: "basicauth"
+    pzvideo:
+      middlewares: "basicauth"
+  middlewares:
+    basicauth:
+      basicAuth:
+        removeHeader: true
+        users:
+        # admin:admin
+          - admin:$apr1$7guPZO6M$9n6RVuAsy8AN3cv394fEa0

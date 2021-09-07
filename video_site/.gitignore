@@ -1,0 +1,7 @@
+__pycache__
+colorui-preview/
+.hbuilderx
+.automator
+.deta
+docker/app
+docker/data

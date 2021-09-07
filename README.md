@@ -36,6 +36,7 @@ https://www.toutiao.com/c/user/2326195698407587/#mid=1640198859939847
 
 ## 从后端到前端
 1. [从后端到前端: 写一个全文搜索引擎(Python)](https://github.com/youerning/blog/tree/master/search_engine)
+1. [从后端到前端: 写一个h5视频网站](https://github.com/youerning/blog/tree/master/video_site)
 
 
 ## 代码玩股票系列

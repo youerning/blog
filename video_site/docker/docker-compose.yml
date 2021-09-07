@@ -1,0 +1,52 @@
+version: '3.3'
+
+services:
+  traefik:
+    image: traefik:latest
+    container_name: traefik
+    # restart: never
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      - ACME_DNS_API_BASE=https://auth.acme-dns.io
+      - ACME_DNS_STORAGE_PATH=/acme-dns
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ${PWD}/data/traefik.yml:/traefik.yml:ro
+      - ${PWD}/data/acme.json:/acme.json
+      - ${PWD}/data/acme-dns:/acme-dns
+      # 使用htpasswd生成凭证文件
+      - ${PWD}/pass.txt:/pass.txt
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.entrypoints=websecure"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.yourdomain`)"
+      - "traefik.http.routers.traefik.middlewares=traefik-auth"
+      - "traefik.http.middlewares.traefik-auth.basicauth.usersfile=/pass.txt"
+      - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.middlewares.test-ratelimit.ratelimit.average=10"
+      - "traefik.http.middlewares.test-ratelimit.ratelimit.burst=50"
+  db:
+    image: mongo
+    ports:
+      - "127.0.0.1:27017:27017"
+    volumes:
+      - /data/mongodb:/data/db
+
+  web:
+    image: video
+    depends_on:
+      - db
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.video.entrypoints=websecure"
+      - "traefik.http.routers.video.rule=Host(`video.yourdomain`)"
+      - "traefik.http.routers.video.middlewares=index-auth"
+      - "traefik.http.middlewares.index-auth.basicauth.usersfile=/pass.txt"
+      # - "traefik.http.middlewares.test-ratelimit.ratelimit.average=10"
+      # - "traefik.http.middlewares.test-ratelimit.ratelimit.burst=50"
+
