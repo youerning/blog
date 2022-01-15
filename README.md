@@ -52,6 +52,11 @@ https://www.toutiao.com/c/user/2326195698407587/#mid=1640198859939847
 3. [从tcp开始，用Python写一个web框架完整版](https://github.com/youerning/blog/tree/master/web_framework/post3.md)
 
 ## 阅读Kubernetes源代码系列
+1. kubectl
+   1. [kubectl(一)](https://github.com/youerning/blog/blob/master/kubernetes/kubectl1.md)
+
+
+**番外篇:**
 1. [ingress-nginx代码阅读](https://github.com/youerning/blog/tree/master/kubernetes/nginx-ingress-controller.md)
 
 
