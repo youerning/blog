@@ -33,6 +33,7 @@ https://www.toutiao.com/c/user/2326195698407587/#mid=1640198859939847
 22. [从无到有用Python写一门编程语言1](https://github.com/youerning/blog/tree/master/new_program)
 23. [数据流监控可视化1树状结构](https://github.com/youerning/blog/tree/master/dataflow-vis)
 24. [用Python发一封图文并茂的邮件](https://github.com/youerning/blog/tree/master/sendmail)
+25. [一天用Go快速搭建一个运维管理后台](https://github.com/youerning/blog/tree/master/fast-admin)
 
 ## 从后端到前端
 1. [从后端到前端: 写一个全文搜索引擎(Python)](https://github.com/youerning/blog/tree/master/search_engine)
