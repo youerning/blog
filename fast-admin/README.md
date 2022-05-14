@@ -557,8 +557,6 @@ go run main.go
 
 要运行Gin-Vue-Admin还是比单纯的Go代码复杂一点，你至少需要一个node环境，如果你想修改前端代码就得会JavaScript和Vue的代码，但是如果你觉得Gin-Vue-Admin的默认样式和页面已经足够了那就不用去写前端代码。
 
-
-
 初始化及启动请参考:  https://www.gin-vue-admin.com/docs/first_master
 
 这里演示一下同样前面的示例的相关操作。
@@ -597,11 +595,7 @@ go run main.go
 
 ![](img/2022-03-25-16-13-35-image.png)
 
-
-
 除了上面的好处之外，你还附带有一个现成的用户管理，权限管理，认证管理等功能的功能齐全的后台，世界就此变得美好了。
-
-
 
 ## 后记
 
