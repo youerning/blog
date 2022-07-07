@@ -490,4 +490,4 @@ async def proxy(path):
 
 本人在深圳测试这些资源，发现都有一点卡顿，可能跟地域有关，所以在脚本里面还去自己爬了一个某卫视的资源，这个资源比较流畅。
 
-> 代码地址: https://github.com/youerning/blog/iptv/src
+> 代码地址: https://github.com/youerning/blog/tree/master/iptv/src
