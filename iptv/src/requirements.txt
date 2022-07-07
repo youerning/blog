@@ -1,0 +1,4 @@
+deta
+typer
+aiohttp
+beautifulsoup4

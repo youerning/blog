@@ -35,6 +35,7 @@ https://www.toutiao.com/c/user/2326195698407587/#mid=1640198859939847
 24. [用Python发一封图文并茂的邮件](https://github.com/youerning/blog/tree/master/sendmail)
 25. [一天用Go快速搭建一个运维管理后台](https://github.com/youerning/blog/tree/master/fast-admin)
 26. [Python处理yaml和嵌套数据结构的一些技巧](https://github.com/youerning/blog/tree/master/py_yaml_nested_data)
+27. [用Python打造属于自己的IPTV直播源](https://github.com/youerning/blog/tree/master/iptv)
 
 ## 从后端到前端
 1. [从后端到前端: 写一个全文搜索引擎(Python)](https://github.com/youerning/blog/tree/master/search_engine)
