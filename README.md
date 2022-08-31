@@ -37,6 +37,7 @@ https://www.toutiao.com/c/user/2326195698407587/#mid=1640198859939847
 26. [Python处理yaml和嵌套数据结构的一些技巧](https://github.com/youerning/blog/tree/master/py_yaml_nested_data)
 27. [用Python打造属于自己的IPTV直播源](https://github.com/youerning/blog/tree/master/iptv)
 28. [Python异步编程全攻略](https://github.com/youerning/blog/tree/master/python-async)
+29. [Python异步编程全攻略](https://github.com/youerning/blog/tree/master/apisix_code)
 
 
 ## 从后端到前端
