@@ -1125,3 +1125,5 @@ var b64Enc = base64.RawURLEncoding
 ## 总结
 
 coredns还是很棒的, 因为是GO写的所以可以交叉编译各个平台的可执行文件，这样部署很方便，又因为coredns是一个发展不错的项目，所以资源和插件都很丰富，又因为借鉴了caddy的插件体系，所以扩展起来很方便。
+
+Github地址参考: https://github.com/youerning/blog/tree/master/coredns_code
