@@ -34,7 +34,7 @@ test web2: /ping
 
 
 ### 负载均衡
-通过一下命令查看当前路由列表
+通过以下命令查看当前路由列表
 ```shell
 curl 127.0.0.1:8000/apix/admin/routes|python -m json.tool
 ```
@@ -115,9 +115,9 @@ echo before here
 {"message":"Missing authorization in request"}
 echo after here
 ```
-因为路由2配置两个插件, 其中一个插件是basic-auth的验证插件, 所以结果中会提示缺失了验证, 而响应中的`echo before here`和`echo aftre here`内容是有echo插件导致的。
+因为路由2配置两个插件, 其中一个插件是basic-auth的验证插件, 所以结果中会提示缺失了验证, 而响应中的`echo before here`和`echo aftre here`内容是由echo插件导致的。
 
-下面在使用用户名密码测试一下
+下面再使用用户名密码测试一下
 ```shell
 curl -H "Host: test2.com" http://test:test@127.0.0.1:8000/ping
 ```
@@ -181,7 +181,7 @@ curl -X PUT 127.0.0.1:8000/apix/admin/routes/1 -d '{
 ```json
 {"msg":"更新成功"}
 ```
-> 注意这里的url是127.0.0.1:8000/apix/admin/routes/**1**, 这是因为路由列表只有一条了，而lua的索引是有1开始的, 通过查看路由列表，可以发现只剩一条记录了。
+> 注意这里的url是127.0.0.1:8000/apix/admin/routes/**1**, 这是因为路由列表只有一条了，而lua的索引是由1开始的, 通过查看路由列表，可以发现只剩一条记录了。
 
 
 #### 新增路由
