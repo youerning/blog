@@ -30,11 +30,46 @@ certinfo baidu.com:443
 ```
 显示结果如下:
 ```txt
-xxxxxxxxxxxxxxxxxx
+--- [baidu.com:443 TLS 1.2] ---
+Version: 3
+Serial Number: 11567442207000512002371158812715313681
+Signature Algorithm: SHA256-RSA
+Type: end-entity
+Issuer: CN=DigiCert Secure Site Pro CN CA G3,O=DigiCert Inc,C=US
+Validity
+    Not Before: Feb 11 00:00:00 2022 UTC
+    Not After : Feb 25 23:59:59 2023 UTC
+Subject: CN=www.baidu.cn,O=BeiJing Baidu Netcom Science Technology Co.\, Ltd,ST=Beijing,C=CN
+DNS Names: www.baidu.cn, baidu.cn, baidu.com, baidu.com.cn, w.baidu.com, ww.baidu.com, www.baidu.com.cn, www.baidu.com.hk, www.baidu.hk, www.baidu.net.au, www.baidu.net.ph, www.baidu.net.tw, www.baidu.net.vn, wwww.baidu.com, wwww.baidu.com.cn
+IP Addresses:
+Key Usage: Digital Signature, Key Encipherment
+Ext Key Usage: Server Auth, Client Auth
+CA: false
+
+Version: 3
+Serial Number: 6807354621841521274861062396893733477
+Signature Algorithm: SHA256-RSA
+Type: intermediate
+Issuer: CN=DigiCert Global Root CA,OU=www.digicert.com,O=DigiCert Inc,C=US
+Validity
+    Not Before: Mar 13 12:00:48 2020 UTC
+    Not After : Mar 13 12:00:48 2030 UTC
+Subject: CN=DigiCert Secure Site Pro CN CA G3,O=DigiCert Inc,C=US
+DNS Names:
+IP Addresses:
+Key Usage: Digital Signature, Cert Sign, CRL Sign
+Ext Key Usage: Server Auth, Client Auth
+CA: true
+
+--- 1 verified chains ---
 ```
 最前面的就是baidu.com自己的证书, 后面的就是证书链, 依次代表CA签发的顺序.
 DNS Names代表整个证书绑定的域名
 IP Address代表绑定的IP地址, 可以看到baidu.com没有, 但是一些DOT DNS协议的证书是有的, 比如dns.alidns.com
+
+
+项目地址: https://github.com/pete911/certinfo
+下载地址: https://github.com/pete911/certinfo/releases
 
 ### mkcert
 如果你急切的想创建一个ssl证书并安装对应的根证书到当前环境的话, 用mkcert准没错, 一行命令即可.
@@ -571,3 +606,5 @@ go run src/cmd/new_cert/main.go
 ## 总结
 如果使用openssl创建证书, 你可能需要创建6个文件才能完成工作, 会很抓狂, 如果你还不懂各个步骤的意义就会对证书的创建望而生畏(我以前就是...), 所以出现了极傻瓜式的工具mkcert, 无脑创建证书很快很有用, 它甚至还能帮你安装根证书, 从此世界安静了, 可是随着对证书的深入发现还是会需要openssl来完成更细致的需求, 所以openssl yyds, 自签名证书的一个问题就是无法让所有人接受, 所以需要购买CA机构签名的证书, 但是小网站, 个人而言根本不需要那种专业性的证书, 所以出现大量的免费证书颁发机构, 从此https流量高歌猛进. 
 
+
+**代码及文章地址**: https://github.com/youerning/blog/tree/master/mkssl
