@@ -84,7 +84,21 @@ example.com-key.pem是证书的私钥, example.com.pem是公钥, 有了这两个
 
 但是当你用浏览器访问的时候你会发现, 这个证书是不受信任的, 因为这个证书是自己的签名, 所以浏览器无法识别签名端, 如果我们用certinfo查看一下证书的详情就会发现, 签名者是本机地址, 结果如下
 ```txt
-xxxxxxxxxxxxxxxxxx
+--- [example.com.pem] ---
+Version: 3
+Serial Number: 167868079130384122688578569988391501606
+Signature Algorithm: SHA256-RSA
+Type: end-entity
+Issuer: CN=mkcert,OU=你的电脑信息,O=mkcert development CA
+Validity
+    Not Before: Dec  3 04:10:22 2022 UTC
+    Not After : Mar  3 04:10:22 2025 UTC
+Subject: OU=你的电脑信息,O=mkcert development certificate
+DNS Names: example.com
+IP Addresses:
+Key Usage: Digital Signature, Key Encipherment
+Ext Key Usage: Server Auth
+CA: false
 ```
 可以看到Issuer那行不是浏览器信任的任何一个机构, 所以浏览器提示危险, 那么浏览器信任哪些机构呢?通过在浏览器打开`chrome://settings/security` -> 管理证书 -> 受信任的根证书颁发机构.就能看到一堆受信任的CA机构了.
 
