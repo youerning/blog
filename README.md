@@ -42,7 +42,7 @@ https://www.toutiao.com/c/user/2326195698407587/#mid=1640198859939847
 31. [500行以内写一个API网关](https://github.com/youerning/blog/tree/master/apix_code)
 32. [打造自己的私人DNS, 反毒化, 反广告, 加速(也许)](https://github.com/youerning/blog/tree/master/custom_dns)
 33. [一文搞定SSL证书的所有创建问题](https://github.com/youerning/blog/tree/master/mkssl)
-34. [casbin使用指南](https://github.com/youerning/blog/tree/master/casbin)
+34. [casbin权限模型推演](https://github.com/youerning/blog/tree/master/casbin)
 
 
 
