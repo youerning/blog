@@ -69,7 +69,7 @@ zhaoliu, web2, read
 
 比如我们可以定义一个这样的模型
 
-```toml
+```ini
 # 策略定义的意思
 [policy_definition]
 p = user, website, action
@@ -83,7 +83,7 @@ m = user == p.user && website == website && action == action
 
 比如只匹配第一个字段, 那我们可以定义如下
 
-```toml
+```ini
 # 策略定义的意思
 [policy_definition]
 p = user, website, action
@@ -95,7 +95,7 @@ m = user == p.user
 
 又比如只匹配第一个和第三个字段
 
-```toml
+```ini
 # 策略定义的意思
 [policy_definition]
 p = user, website, action
@@ -107,7 +107,7 @@ m = user == p.user && action == p.action
 
 至此我们可以在不改动策略文件的情况下仅仅改变比较小的内容就可以很快的完成匹配模型的转换，这样就会灵活很多，但是现在的模型还有些不太严谨， 我们通过`p = user, website, action `定义了策略文件的各个字段，却没有定义用户请求的各个字段， 比如要求用户请求应该填上哪些字段，所以我们需要再次改一下我们的匹配模型，修改如下:
 
-```toml
+```ini
 # 请求定义的意思
 [request_definition]
 r = user, website, action
@@ -123,7 +123,7 @@ m = r.user == p.user && r.action == p.action
 
 这样子我们的匹配模型看起来要严谨许多了，但是模型中请求定义(request_definition), 策略定义(policy_definition)在toml中的语法其实都是列表, 即我们可以定义多个策略和请求定义，比如:
 
-```toml
+```ini
 # 请求定义的意思
 [request_definition]
 r = user, website, action
@@ -162,7 +162,7 @@ p2, sunqi, read
 
 所以仅仅是为了让我们的模型的语言看起来更加的泛化，所以我们将其改成如下
 
-```toml
+```ini
 # 请求定义的意思
 [request_definition]
 r = subject, object, action
@@ -187,7 +187,7 @@ m3 = r.subject == p.subject && r.action == p.action
 
 所以模型定义如下:
 
-```toml
+```ini
 # 请求定义的意思
 [request_definition]
 r = subject, object, action
@@ -250,7 +250,7 @@ p3, sunqi, web10, deny
 
 模型定义如下:
 
-```toml
+```ini
 [request_definition]
 r = sub, obj, act
 
@@ -320,7 +320,7 @@ func TestACL1(t *testing.T) {
 
 所以模型如下:
 
-```toml
+```ini
 [request_definition]
 r = sub, obj, act
 
@@ -495,7 +495,7 @@ func TestRBAC(t *testing.T) {
 
 模型定义如下:
 
-```toml
+```ini
 [request_definition]
 r = sub, obj, act
 r2 = sub, obj
@@ -601,7 +601,7 @@ func TestRBAC(t *testing.T) {
 
 本文全篇都是白名单策略，即允许才放行，但是有时候很名单更有效，比如网站的反爬策略，大多数链接都是允许的，只有一部分是不允许的, 所以用白名单去放行所有资源显然有点不现实及不高效，所以我们可以将策略结果进行如下设置
 
-```toml
+```ini
 [policy_effect]
 e = !some(where (p.eft == deny))
 ```
@@ -610,7 +610,7 @@ e = !some(where (p.eft == deny))
 
 但是什么时候`p.eft == deny `呢?  其实策略定义中可配置eft这个属性，定义如下
 
-```toml
+```ini
 [policy_definition]
 p = sub, obj, act, eft
 ```
