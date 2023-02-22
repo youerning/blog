@@ -43,6 +43,7 @@ https://www.toutiao.com/c/user/2326195698407587/#mid=1640198859939847
 32. [打造自己的私人DNS, 反毒化, 反广告, 加速(也许)](https://github.com/youerning/blog/tree/master/custom_dns)
 33. [一文搞定SSL证书的所有创建问题](https://github.com/youerning/blog/tree/master/mkssl)
 34. [casbin权限模型推演](https://github.com/youerning/blog/tree/master/casbin)
+35. [使用golang和bluge打造自己的全文搜索引擎](https://github.com/youerning/blog/tree/master/gobluge)
 
 
 
