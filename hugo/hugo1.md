@@ -241,7 +241,7 @@ addy run --config /path/to/Caddyfile
 
 得益于cloudflare的慷慨，我们免费就能享受到这三者。
 
-在使用之前，需要将域名托管到cloudflare, 参考文档:   ======复制-======
+在使用之前，需要将域名托管到cloudflare.
 
 当你托管域名之后，CDN就自己具备了，而WAF，我们可以配置一个速率限制的WAF规则，简单的抵抗一下未知的攻击。
 
