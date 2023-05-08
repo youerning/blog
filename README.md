@@ -6,6 +6,8 @@ http://blog.51cto.com/youerning
 
 https://www.toutiao.com/c/user/2326195698407587/#mid=1640198859939847
 
+https://youerning.top
+
 公众号: 又耳笔记(youerbiji)
 
 ## 技术文章列表
@@ -44,6 +46,7 @@ https://www.toutiao.com/c/user/2326195698407587/#mid=1640198859939847
 33. [一文搞定SSL证书的所有创建问题](https://github.com/youerning/blog/tree/master/mkssl)
 34. [casbin权限模型推演](https://github.com/youerning/blog/tree/master/casbin)
 35. [使用golang和bluge打造自己的全文搜索引擎](https://github.com/youerning/blog/tree/master/gobluge)
+36. [使用hugo搭建自己的网站](https://github.com/youerning/blog/tree/master/hugo/hugo1.md)
 
 
 
