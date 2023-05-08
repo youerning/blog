@@ -241,7 +241,7 @@ addy run --config /path/to/Caddyfile
 
 得益于cloudflare的慷慨，我们免费就能享受到这三者。
 
-在使用之前，需要将域名托管到cloudflare.
+在使用之前，需要将域名托管到cloudflare, 参考文档:   ======复制-======
 
 当你托管域名之后，CDN就自己具备了，而WAF，我们可以配置一个速率限制的WAF规则，简单的抵抗一下未知的攻击。
 
@@ -267,7 +267,9 @@ rsync -avzP --delete {localDir} root@{remoteHost}:{remoteDir}
 
 首先注册一个uptimerobot的用户，然后配置如下。
 
+![image-20230508204246351](./img/image-20230508204246351.png)
 
+![image-20230508204341308](./img/image-20230508204341308.png)
 
 免费的用户就是1分钟探测一次，然后检测失败就发邮件。
 
