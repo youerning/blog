@@ -47,6 +47,10 @@ https://youerning.top
 34. [casbin权限模型推演](https://github.com/youerning/blog/tree/master/casbin)
 35. [使用golang和bluge打造自己的全文搜索引擎](https://github.com/youerning/blog/tree/master/gobluge)
 36. [使用hugo搭建自己的网站](https://github.com/youerning/blog/tree/master/hugo/hugo1.md)
+37. [网站流量分析](https://github.com/youerning/blog/tree/master/web-log-analysis)
+38. [python命令行typer 快速入门教程](https://github.com/youerning/blog/tree/master/typer-tutorial)
+39. [golang命令行cobra 快速入门教程](https://github.com/youerning/blog/tree/master/cobra-tutorial)
+40. [Golang配置管理viper快速入门教程 ](https://github.com/youerning/blog/tree/master/viper-tutorial)
 
 
 
