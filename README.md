@@ -46,11 +46,11 @@ https://youerning.top
 33. [一文搞定SSL证书的所有创建问题](https://github.com/youerning/blog/tree/master/mkssl)
 34. [casbin权限模型推演](https://github.com/youerning/blog/tree/master/casbin)
 35. [使用golang和bluge打造自己的全文搜索引擎](https://github.com/youerning/blog/tree/master/gobluge)
-36. [使用hugo搭建自己的网站](https://github.com/youerning/blog/tree/master/hugo/hugo1.md)
-37. [网站流量分析](https://github.com/youerning/blog/tree/master/web-log-analysis)
-38. [python命令行typer 快速入门教程](https://github.com/youerning/blog/tree/master/typer-tutorial)
-39. [golang命令行cobra 快速入门教程](https://github.com/youerning/blog/tree/master/cobra-tutorial)
-40. [Golang配置管理viper快速入门教程 ](https://github.com/youerning/blog/tree/master/viper-tutorial)
+36. [使用hugo搭建自己的网站](https://youerning.top/post/hugo/hugo1)
+37. [网站流量分析](https://youerning.top/post/web-log-analysis)
+38. [python命令行typer 快速入门教程](https://youerning.top/post/typer-tutorial)
+39. [golang命令行cobra 快速入门教程](https://youerning.top/post/cobra-tutorial)
+40. [Golang配置管理viper快速入门教程 ](https://youerning.top/post/viper-tutorial)
 
 
 
