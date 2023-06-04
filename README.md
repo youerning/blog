@@ -1,14 +1,16 @@
 # 又耳笔记
-关于技术与股票的一些零碎想法, 比较随意。
+关于技术与股票的一些零碎想法和见解。
+
+
 
 ## 其他地址
-http://blog.51cto.com/youerning
-
-https://www.toutiao.com/c/user/2326195698407587/#mid=1640198859939847
+~~http://blog.51cto.com/youerning  *不再更新*~~
 
 https://youerning.top
 
 公众号: 又耳笔记(youerbiji)
+
+![微信公众号](./img/youerbiji.png)
 
 ## 技术文章列表
 1. [使用Prometheus+grafana打造高逼格监控平台](https://github.com/youerning/blog/tree/master/prometheus)
@@ -76,6 +78,8 @@ https://youerning.top
    1. [kubectl(一)](https://github.com/youerning/blog/blob/master/kubernetes/kubectl1.md)
 2. kube-proxy
    1. [kube-proxy源码阅读](https://github.com/youerning/blog/blob/master/kubernetes/kube-proxy.md)
+1. client-go源码阅读系列
+   1. [快速入门client-go源代码之总纲](https://youerning.top/post/k8s-client-go-code-reading/post1/)
 
 
 **番外篇:**
@@ -86,3 +90,4 @@ https://youerning.top
 ## 非技术文章列表
 1. [股市投机迷思](https://github.com/youerning/blog/tree/master/stock-in-thought)
 2. [《趋势永存》-《海龟交易法则》读后感](https://github.com/youerning/blog/tree/master/trending_invest)
+
