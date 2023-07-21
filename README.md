@@ -82,6 +82,15 @@ https://youerning.top
    1. [kube-proxy源码阅读](https://github.com/youerning/blog/blob/master/kubernetes/kube-proxy.md)
 1. client-go源码阅读系列
    1. [快速入门client-go源代码之总纲](https://youerning.top/post/k8s-client-go-code-reading/post1/)
+   2. [快速入门 client-go源代码之配置加载](https://youerning.top/post/k8s-client-go-code-reading/post2/)
+   3. [快速入门client-go源代码之静态客户端](https://youerning.top/post/k8s-client-go-code-reading/post3/)
+   4. [快速入门client-go源代码之动态客户端](https://youerning.top/post/k8s-client-go-code-reading/post4/)
+   5. [快速入门client-go源码之RESTClient](https://youerning.top/post/k8s-client-go-code-reading/post5/)
+   6. [快速入门client-go源码之Scheme编解码](https://youerning.top/post/k8s-client-go-code-reading/post6/)
+   7. [快速入门client-go源码之发现客户端](https://youerning.top/post/k8s-client-go-code-reading/post7/)
+   8. [kubernetes client-go源码阅读之RESTMapper](https://youerning.top/post/k8s-client-go-code-reading/post8/)
+   9. [kubernetes client-go源码阅读之选举](https://youerning.top/post/k8s-client-go-code-reading/post9/)
+   10. [kubernetes client-go源码阅读之Informer](https://youerning.top/post/k8s-client-go-code-reading/post10/)
 
 
 **番外篇:**
