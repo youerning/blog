@@ -77,10 +77,21 @@ https://youerning.top
 
 ## 阅读Kubernetes源代码系列
 1. kubectl
-   1. [kubectl(一)](https://github.com/youerning/blog/blob/master/kubernetes/kubectl1.md)
+   1. [kubectl](https://youerning.top/post/kubernetes/kubectl1/) 
+   2. [Kubectl源码阅读1](https://youerning.top/post/kubernetes/kubectl-new-1/)
+   3. [Kubectl源码阅读2](https://youerning.top/post/kubernetes/kubectl-new-2/)
+
 2. kube-proxy
    1. [kube-proxy源码阅读](https://github.com/youerning/blog/blob/master/kubernetes/kube-proxy.md)
-1. client-go源码阅读系列
+
+3. kube-apiserver
+   - [kube-apiserver源码阅读1启动流程](https://youerning.top/post/kubernetes/kube-apiserver1/)
+   - *待更新* [kube-apiserver源码阅读2之GenericAPIServer](https://youerning.top/post/kubernetes/kube-apiserver2/)
+   - *待更新* [kube-apiserver源码阅读3之认证](https://youerning.top/post/kubernetes/kube-apiserver3/)
+   - *待更新* [kube-apiserver源码阅读4之鉴权](https://youerning.top/post/kubernetes/kube-apiserver4/)
+   - *待更新* [kube-apiserver源码阅读5之路由](https://youerning.top/post/kubernetes/kube-apiserver5/)
+
+4. client-go源码阅读系列
    1. [快速入门client-go源代码之总纲](https://youerning.top/post/k8s-client-go-code-reading/post1/)
    2. [快速入门 client-go源代码之配置加载](https://youerning.top/post/k8s-client-go-code-reading/post2/)
    3. [快速入门client-go源代码之静态客户端](https://youerning.top/post/k8s-client-go-code-reading/post3/)
