@@ -84,7 +84,7 @@ BFE是一个非常强大的七层负载均衡, 与其他负载均衡存在一些
 
 - [百度开源网关BFE源代码阅读1之启动](https://youerning.top/post/bfe/bfe1/)
 - [百度开源网关BFE源代码阅读2之路由](https://youerning.top/post/bfe/bfe2/)
-- [百度开源网关FE源代码阅读3之路由实战](https://youerning.top/post/bfe/bfe3/)
+- [百度开源网关BFE源代码阅读3之路由实战](https://youerning.top/post/bfe/bfe3/)
 - [百度开源网关BFE源代码阅读4之模块](https://youerning.top/post/bfe/bfe4/)
 
 
