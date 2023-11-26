@@ -60,6 +60,11 @@ https://youerning.top
 45. [将静态网站上传到IPFS网络](https://youerning.top/post/ipfs-website/)
 46. [Rust HTTP客户端reqwest快速入门教程](https://youerning.top/post/reqwest-tutorial/)
 47. [Rust HTTP客户端reqwest源码阅读](https://youerning.top/post/reqwest-code-reading/)
+48. [RUST异步数据库工具库sqlx快速入门教程 ](https://youerning.top/post/sqlx-tutorial/)
+49. [go-ethereum开发之RPC调用教程](https://youerning.top/post/go-ethereum/post2/)
+50. [我受够了前端的复杂性了 ](https://youerning.top/post/diss-frontend-framework/)
+51. [用Rust来做以太坊开发1 ](https://youerning.top/post/ethers-rs/tutorial-1/)
+52. [RUST web框架axum快速入门教程1 ](https://youerning.top/post/axum/quickstart-1/)
 
 ## 从后端到前端
 1. [从后端到前端: 写一个全文搜索引擎(Python)](https://github.com/youerning/blog/tree/master/search_engine)
