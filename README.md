@@ -71,11 +71,11 @@ https://youerning.top
 4. [RUST web框架axum快速入门教程4之路由](https://youerning.top/post/axum/quickstart-4/)
 
 ## ethers-rs系列
-1. [用Rust来做以太坊开发1](https://youerning.top/post/ethers-rs/tutorial-1/)
-2. [用Rust来做以太坊开发2](https://youerning.top/post/ethers-rs/tutorial-2/)
-3. [用Rust来做以太坊开发3](https://youerning.top/post/ethers-rs/tutorial-3/)
-4. [用Rust来做以太坊开发4](https://youerning.top/post/ethers-rs/tutorial-4/)
-5. [用Rust来做以太坊开发4](https://youerning.top/post/ethers-rs/tutorial-5/)
+1. [用Rust来做以太坊开发1之客户端](https://youerning.top/post/ethers-rs/tutorial-1/)
+2. [用Rust来做以太坊开发2之账户](https://youerning.top/post/ethers-rs/tutorial-2/)
+3. [用Rust来做以太坊开发3之交易](https://youerning.top/post/ethers-rs/tutorial-3/)
+4. [用Rust来做以太坊开发4之智能合约](https://youerning.top/post/ethers-rs/tutorial-4/)
+5. [用Rust来做以太坊开发5之事件日志及签名](https://youerning.top/post/ethers-rs/tutorial-5/)
 
 
 ## 从后端到前端
