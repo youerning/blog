@@ -63,8 +63,20 @@ https://youerning.top
 48. [RUST异步数据库工具库sqlx快速入门教程 ](https://youerning.top/post/sqlx-tutorial/)
 49. [go-ethereum开发之RPC调用教程](https://youerning.top/post/go-ethereum/post2/)
 50. [我受够了前端的复杂性了 ](https://youerning.top/post/diss-frontend-framework/)
-51. [用Rust来做以太坊开发1 ](https://youerning.top/post/ethers-rs/tutorial-1/)
-52. [RUST web框架axum快速入门教程1 ](https://youerning.top/post/axum/quickstart-1/)
+
+## axum系列
+1. [RUST web框架axum快速入门教程1之参数获取](https://youerning.top/post/axum/quickstart-1/)
+2. [RUST web框架axum快速入门教程2之响应构造](https://youerning.top/post/axum/quickstart-2/)
+3. [RUST web框架axum快速入门教程3之状态共享](https://youerning.top/post/axum/quickstart-3/)
+4. [RUST web框架axum快速入门教程4之路由](https://youerning.top/post/axum/quickstart-4/)
+
+## ethers-rs系列
+1. [用Rust来做以太坊开发1](https://youerning.top/post/ethers-rs/tutorial-1/)
+2. [用Rust来做以太坊开发2](https://youerning.top/post/ethers-rs/tutorial-2/)
+3. [用Rust来做以太坊开发3](https://youerning.top/post/ethers-rs/tutorial-3/)
+4. [用Rust来做以太坊开发4](https://youerning.top/post/ethers-rs/tutorial-4/)
+5. [用Rust来做以太坊开发4](https://youerning.top/post/ethers-rs/tutorial-5/)
+
 
 ## 从后端到前端
 1. [从后端到前端: 写一个全文搜索引擎(Python)](https://github.com/youerning/blog/tree/master/search_engine)
