@@ -69,8 +69,8 @@ https://youerning.top
 2. [RUST web框架axum快速入门教程2之响应构造](https://youerning.top/post/axum/quickstart-2/)
 3. [RUST web框架axum快速入门教程3之状态共享](https://youerning.top/post/axum/quickstart-3/)
 4. [RUST web框架axum快速入门教程4之路由](https://youerning.top/post/axum/quickstart-4/)
-5. [RUST web框架axum快速入门教程3之中间件](https://youerning.top/post/axum/quickstart-5/)
-6. [RUST web框架axum快速入门教程4之测试](https://youerning.top/post/axum/quickstart-6/)
+5. [RUST web框架axum快速入门教程5之中间件](https://youerning.top/post/axum/quickstart-5/)
+6. [RUST web框架axum快速入门教程6之测试](https://youerning.top/post/axum/quickstart-6/)
 
 ## ethers-rs系列
 1. [用Rust来做以太坊开发1之客户端](https://youerning.top/post/ethers-rs/tutorial-1/)
