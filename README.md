@@ -62,7 +62,17 @@ https://youerning.top
 47. [Rust HTTP客户端reqwest源码阅读](https://youerning.top/post/reqwest-code-reading/)
 48. [RUST异步数据库工具库sqlx快速入门教程 ](https://youerning.top/post/sqlx-tutorial/)
 49. [go-ethereum开发之RPC调用教程](https://youerning.top/post/go-ethereum/post2/)
-50. [我受够了前端的复杂性了 ](https://youerning.top/post/diss-frontend-framework/)
+50. [我受够了前端的复杂性了](https://youerning.top/post/diss-frontend-framework/)
+51. [Rust文本处理快速入门教程](https://youerning.top/post/rust/rust-text-processing-tutorial/)
+52. [Rust声明宏快速入门教程](https://youerning.top/post/rust/rust-declarative-macros-tutorial/)
+53. [Rust真全栈开发快速入门](https://youerning.top/post/rust/rust-fullstack-quickstart/)
+54. [Rust小项目:用Rust写一个端口扫描器](https://youerning.top/post/rust/rust-port-scan/)
+55. [Rust命令行库Clap快速入门教程](https://youerning.top/post/rust/rust-clap-tutorial/)
+55. [Rust小项目: 写一个简单的网页爬虫](https://youerning.top/post/rust/rust-simple-scraper/)
+55. [Rust小项目: 写一个简单的恶意流量阻断器](https://youerning.top/post/rust/rust-traffic-monitor/)
+55. [用Rust发一封图文并茂的邮件](https://youerning.top/post/rust/rust-email-tutorial/)
+55. [使用Loco快速搭建自己的后台系统](https://youerning.top/post/rust/loco-quickstart/)
+55. [Rust模板引擎askama快速入门](https://youerning.top/post/rust/askama-tutorial/)
 
 ## axum系列
 1. [RUST web框架axum快速入门教程1之参数获取](https://youerning.top/post/axum/quickstart-1/)
@@ -107,6 +117,16 @@ BFE是一个非常强大的七层负载均衡, 与其他负载均衡存在一些
 - [百度开源网关BFE源代码阅读2之路由](https://youerning.top/post/bfe/bfe2/)
 - [百度开源网关BFE源代码阅读3之路由实战](https://youerning.top/post/bfe/bfe3/)
 - [百度开源网关BFE源代码阅读4之模块](https://youerning.top/post/bfe/bfe4/)
+
+## Rust网络框架Pingora
+`Pingora`一直是我比较期待的项目，所以写个入门系列教程吧。之前研究过一些其他产品，比如`nginx`, `nginx-ingress`, `apisix`, `bfe`等, 前三者植入业务基本靠`lua`或者说`openresty` 而`bfe`的社区实在是一言难尽, 所以我认为`Pingora`会成为Rust的明星项目，虽然没达到预期，但至少提供了一个框架，一个社区。
+
+### 源码阅读系列
+- [rust网络框架Pingora源码阅读1](https://youerning.top/post/pingora/code-reading-1/)
+- [rust网络框架Pingora源码阅读2](https://youerning.top/post/pingora/code-reading-2/)
+
+### 快速入门系列
+- [Pingora快速入门教程1之总览](https://youerning.top/post/pingora/tutorial-1/)
 
 
 ## 阅读Kubernetes源代码系列
