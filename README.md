@@ -124,6 +124,7 @@ BFE是一个非常强大的七层负载均衡, 与其他负载均衡存在一些
 ### 源码阅读系列
 - [rust网络框架Pingora源码阅读1](https://youerning.top/post/pingora/code-reading-1/)
 - [rust网络框架Pingora源码阅读2](https://youerning.top/post/pingora/code-reading-2/)
+- [rust网络框架Pingora源码阅读3](https://youerning.top/post/pingora/code-reading-3/)
 
 ### 快速入门系列
 - [Pingora快速入门教程1之总览](https://youerning.top/post/pingora/tutorial-1/)
