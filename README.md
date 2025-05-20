@@ -74,6 +74,10 @@ https://youerning.top
 55. [使用Loco快速搭建自己的后台系统](https://youerning.top/post/rust/loco-quickstart/)
 55. [Rust模板引擎askama快速入门](https://youerning.top/post/rust/askama-tutorial/)
 
+
+## n8n系列
+1. [使用n8n创作短篇小说](https://youerning.top/post/n8n/write_novel/)
+
 ## axum系列
 1. [RUST web框架axum快速入门教程1之参数获取](https://youerning.top/post/axum/quickstart-1/)
 2. [RUST web框架axum快速入门教程2之响应构造](https://youerning.top/post/axum/quickstart-2/)

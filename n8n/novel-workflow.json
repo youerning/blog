@@ -1,0 +1,352 @@
+{
+  "name": "短篇小说工作流",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=以\"{{ $json.data }}\" 为主题创作一万字内容的小说大纲,章节安排以及标题名，标题控制在15字以内要有吸引力",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "你是一个热门的短篇小说作者，擅长编写一万字左右的爽文类型的小说，小说的面向对象是没有太多社会经验的高中生,内容突出好人有好报，恶人有恶报，开头要有吸引力，对话要有张力能够引起读者的情绪共鸣，尽可能多的对话，"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        20,
+        -80
+      ],
+      "id": "a8b917a2-920a-4e86-a02d-242613a4c3bf",
+      "name": "AI Agent",
+      "notesInFlow": true,
+      "notes": "大纲ai"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatDeepSeek",
+      "typeVersion": 1,
+      "position": [
+        0,
+        140
+      ],
+      "id": "7659db96-1674-499e-a30d-69bd410ca6c3",
+      "name": "DeepSeek Chat Model",
+      "credentials": {
+        "deepSeekApi": {
+          "id": "Zhk4NfbLAx5cNnka",
+          "name": "DeepSeek account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"大纲\": \"California\",\n\t\"章节列表\": [{\n      \"index\": 0,\n      \"description\": \"\"\n    }],\n    \"标题\":\"\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        140
+      ],
+      "id": "33b5263f-1baa-4538-8798-f7112b31968d",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        600,
+        -80
+      ],
+      "id": "b035c776-1f97-40e2-ad79-8e24148a3d6e",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "name": "Replace Me",
+      "typeVersion": 1,
+      "position": [
+        1400,
+        -60
+      ],
+      "id": "b382158e-fc66-45ef-a457-6d4df87faecd"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "output[\"章节列表\"]",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        380,
+        -80
+      ],
+      "id": "318e15e5-5519-4bc5-803e-10f87fbe5d80",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=根据大纲\"{{ $('AI Agent').last().json.output['大纲'] }}\"和章节安排\"{{ $('AI Agent').last().json.output['章节列表'].map(x => x[\"description\"]).join(';') }}\"编写第{{ $json.index }}章内容, 它的章节安排是\" {{ $json.description }}\"，内容为1200字，仅输出文本内容不要在前后增加其他的内容说明，请严格控制字数以及输出的说明",
+        "options": {
+          "systemMessage": "你是一个热门短篇小说作家，善于发现社会痛点和人生百态来编写爽文小说"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        920,
+        -60
+      ],
+      "id": "540ac95c-dd5b-46d2-b0d9-9bb92549410d",
+      "name": "AI Agent1",
+      "notesInFlow": true,
+      "notes": "章节编写"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatDeepSeek",
+      "typeVersion": 1,
+      "position": [
+        880,
+        160
+      ],
+      "id": "615c8ca4-3120-4514-9d9c-7f4895e247b8",
+      "name": "DeepSeek Chat Model1",
+      "credentials": {
+        "deepSeekApi": {
+          "id": "Zhk4NfbLAx5cNnka",
+          "name": "DeepSeek account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "# Loop over input items and add a new field called 'myNewField' to the JSON of each one\ndata = \"\"\nlength = len(_input.all())\n\nfor index, item in enumerate(_input.all()):\n  if index == length - 1:\n    data += item.json.output\n  else:\n    data += (item.json.output + \"\\n\" + \"------\")\n  \nreturn {\"data\": data}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        920,
+        -380
+      ],
+      "id": "e3f303d9-73c0-4c80-b654-84f35166c8e0",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "fromEmail": "354353484@qq.com",
+        "toEmail": "673125641@qq.com",
+        "subject": "=小说 - {{ $('AI Agent').last().json.output['标题'] }}",
+        "emailFormat": "text",
+        "text": "={{ $json.data }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1280,
+        -380
+      ],
+      "id": "27eccc4d-f65f-4ef0-a7a1-102ae3f12830",
+      "name": "Send Email",
+      "webhookId": "b71e19b4-fbe3-4c35-a2aa-63f674550296",
+      "credentials": {
+        "smtp": {
+          "id": "78Qyq2XtavqcE4pn",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        60
+      ],
+      "id": "e6361cab-fff6-4fa3-8c8f-1cc5470d3ec1",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c4609f77-e5d9-48bc-8ef0-33bcf9674c65",
+              "name": "data",
+              "value": "辛辛苦苦给村里卖水果，不曾想村里人觉得自己赚差价太多",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -260,
+        60
+      ],
+      "id": "0bc134c9-563c-445f-a02d-285ce4784d95",
+      "name": "Edit Fields"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "DeepSeek Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Replace Me": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Replace Me",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepSeek Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f47b2491-3de7-4040-a3f6-3d40841f4cf4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "ded71d1fe505f62624a0a9944fbe7d2310f70d4cb8c4a4794be26cc91425a907"
+  },
+  "id": "mJdw6dILFEjHC1S5",
+  "tags": []
+}
