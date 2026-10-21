@@ -48,11 +48,11 @@ https://youerning.top
 33. [一文搞定SSL证书的所有创建问题](https://youerning.top/post/mkssl/)
 34. [casbin权限模型推演](https://youerning.top/post/casbin/)
 35. [使用golang和bluge打造自己的全文搜索引擎](https://youerning.top/post/gobluge/)
-36. [使用hugo搭建自己的网站](https://youerning.top/post/hugo/hugo1)
-37. [网站流量分析](https://youerning.top/post/web-log-analysis)
-38. [python命令行typer 快速入门教程](https://youerning.top/post/typer-tutorial)
-39. [golang命令行cobra 快速入门教程](https://youerning.top/post/cobra-tutorial)
-40. [Golang配置管理viper快速入门教程](https://youerning.top/post/viper-tutorial)
+36. [使用hugo搭建自己的网站](https://youerning.top/post/hugo/hugo1/)
+37. [网站流量分析](https://youerning.top/post/web-log-analysis/)
+38. [python命令行typer 快速入门教程](https://youerning.top/post/typer-tutorial/)
+39. [golang命令行cobra 快速入门教程](https://youerning.top/post/cobra-tutorial/)
+40. [Golang配置管理viper快速入门教程](https://youerning.top/post/viper-tutorial/)
 41. [Golang net/http 客户端快速入门](https://youerning.top/post/go-http-client-tutorial/)
 42. [打造自己的New Bing AI对话机器人](https://youerning.top/post/newbing/)
 43. [golang net/http源代码阅读](https://youerning.top/post/go-http-code-reading/)
@@ -68,15 +68,67 @@ https://youerning.top
 53. [Rust真全栈开发快速入门](https://youerning.top/post/rust/rust-fullstack-quickstart/)
 54. [Rust小项目:用Rust写一个端口扫描器](https://youerning.top/post/rust/rust-port-scan/)
 55. [Rust命令行库Clap快速入门教程](https://youerning.top/post/rust/rust-clap-tutorial/)
-55. [Rust小项目: 写一个简单的网页爬虫](https://youerning.top/post/rust/rust-simple-scraper/)
-55. [Rust小项目: 写一个简单的恶意流量阻断器](https://youerning.top/post/rust/rust-traffic-monitor/)
-55. [用Rust发一封图文并茂的邮件](https://youerning.top/post/rust/rust-email-tutorial/)
-55. [使用Loco快速搭建自己的后台系统](https://youerning.top/post/rust/loco-quickstart/)
-55. [Rust模板引擎askama快速入门](https://youerning.top/post/rust/askama-tutorial/)
+56. [Rust小项目: 写一个简单的网页爬虫](https://youerning.top/post/rust/rust-simple-scraper/)
+57. [Rust小项目: 写一个简单的恶意流量阻断器](https://youerning.top/post/rust/rust-traffic-monitor/)
+58. [用Rust发一封图文并茂的邮件](https://youerning.top/post/rust/rust-email-tutorial/)
+59. [使用Loco快速搭建自己的后台系统](https://youerning.top/post/rust/loco-quickstart/)
+60. [Rust模板引擎askama快速入门](https://youerning.top/post/rust/askama-tutorial/)
+61. [白嫖免费的Rust在线运行时shuttle](https://youerning.top/post/freeresource/shuttle/)
+62. [用Python将PDF文件转换成图片](https://youerning.top/post/pdf/convertt-pdf-to-images/)
+63. [Chainlit入门：快速搞定 Python AI 对话机器人(智能体)](https://youerning.top/post/chainlit-tutorial/)
+64. [AI 编程助手的“不务正业”：OpenCode 免费额度与自定义 Agent 实战](https://youerning.top/post/opencode/opencode-sharing/)
+65. [用 Python 写个 SSH 蜜罐，来一场密码字典的“草船借箭”](https://github.com/youerning/blog/tree/master/sshpot)
 
+## Cloudflare Workers系列
+1. [Cloudflare workers不完全指南](https://youerning.top/post/cloudflare-workers/post1/)
+2. [Cloudflare Workers实战(一)：随心所欲操作客户端请求](https://youerning.top/post/cloudflare-workers/post2/)
+3. [Cloudflare Workers实战(二)：动态修改后端响应](https://youerning.top/post/cloudflare-workers/post3/)
+4. [Cloudflare Workers实战(三)：实现认证、重定向与缓存](https://youerning.top/post/cloudflare-workers/post4/)
+5. [Cloudflare Workers实战(四)：托管和分发静态文件](https://youerning.top/post/cloudflare-workers/post5/)
+6. [Cloudflare Workers实战(五)：不止JavaScript，拥抱Python与Rust](https://youerning.top/post/cloudflare-workers/post6/)
+7. [Cloudflare Workers实战番外一：用Static Assets托管网站，告别传统方案](https://youerning.top/post/cloudflare-workers/post7/)
+
+## OpenClaw源码分析系列
+1. [小龙虾(OpenClaw)源码分析1：整体架构和源码地图](https://youerning.top/post/openclaw-source/post1/)
+2. [小龙虾(OpenClaw)源码分析2：CLI启动链路，从一条命令说起](https://youerning.top/post/openclaw-source/post2/)
+3. [小龙虾(OpenClaw)源码分析3：Gateway启动内幕，控制平面是怎么立起来的](https://youerning.top/post/openclaw-source/post3/)
+4. [小龙虾(OpenClaw)源码分析4：一条消息的完整路径（入站到回复）](https://youerning.top/post/openclaw-source/post4/)
+5. [小龙虾(OpenClaw)源码分析5：Session机制，如何保证上下文连续](https://youerning.top/post/openclaw-source/post5/)
+6. [小龙虾(OpenClaw)源码分析6：队列与并发，如何避免消息串台](https://youerning.top/post/openclaw-source/post6/)
+7. [小龙虾(OpenClaw)源码分析7：流式输出机制，回复为什么又快又稳](https://youerning.top/post/openclaw-source/post7/)
+8. [小龙虾(OpenClaw)源码分析8：AGENTS.md等工作空间文件，如何影响Agent行为](https://youerning.top/post/openclaw-source/post8/)
+9. [小龙虾(OpenClaw)源码分析9：模型与上下文窗口，多Provider如何统一](https://youerning.top/post/openclaw-source/post9/)
+10. [小龙虾(OpenClaw)源码分析10：插件机制，为什么能扩展这么多渠道](https://youerning.top/post/openclaw-source/post10/)
+11. [小龙虾(OpenClaw)源码分析11：安全设计，从默认策略到生产加固](https://youerning.top/post/openclaw-source/post11/)
+12. [小龙虾(OpenClaw)源码分析12：可观测性与排障，线上问题怎么定位](https://youerning.top/post/openclaw-source/post12/)
+13. [小龙虾(OpenClaw)源码分析13：用Python实现一个迷你版（仅命令行交互）](https://youerning.top/post/openclaw-source/post13/)
+
+## GEO与AI搜索
+1. [把谷歌官方指南做成了AI技能，还顺手修了个bug](https://youerning.top/post/geo/ai-search-skill/)
+2. [GEO (Generative Engine Optimization) 系统性学习指南](https://youerning.top/post/geo/geo-systematic-learning-guide/)
+3. [GEO优化不完全指南](https://youerning.top/post/geo/geo-optimization-guide/)
+4. [GEO优化不完全指北](https://youerning.top/post/geo/geo-optimization-rough-guide/)
+
+## Vibe Coding系列
+1. [关于vibe coding的阶段和流派](https://youerning.top/post/vibe-coding/vibe-coding-stages-and-schools/)
+2. [分享一下vibe coding多agent并发编程](https://youerning.top/post/vibe-coding/vibe-coding-multi-agent/)
+3. [大型vibe coding项目的一些技巧](https://youerning.top/post/vibe-coding/large-vibe-coding-project-tips/)
+4. [vibe coding全栈开发工作流（含运维）](https://youerning.top/post/vibe-coding/vibe-coding-fullstack-workflow/)
+5. [vibe coding全栈开发工作流（含运维）2](https://youerning.top/post/vibe-coding/vibe-coding-fullstack-workflow-2/)
+6. [如何一个月vibe coding三个产品](https://youerning.top/post/vibe-coding/one-month-vibe-coding-three-products/)
+
+## AI建站
+1. [用AI挣钱之AI建站：Markdown转PDF工具](https://youerning.top/post/ai_webistes/markdowntopdf.top/)
+2. [用AI挣钱之AI建站：二维码生成器工具](https://youerning.top/post/ai_webistes/qrgeneratortool/)
+
+## 创业与产品
+1. [记录一下微信小程序开发](https://youerning.top/post/startup/wechat-miniprogram-dev-record/)
+2. [创业三个月后](https://youerning.top/post/startup/three-months-after-startup/)
+3. [To B还是To C，这是一个问题](https://youerning.top/post/startup/to-b-or-to-c/)
 
 ## n8n系列
 1. [使用n8n创作短篇小说](https://youerning.top/post/n8n/write_novel/)
+2. [水果风波：信任的代价](https://youerning.top/post/n8n/ai-novel/)
 
 ## axum系列
 1. [RUST web框架axum快速入门教程1之参数获取](https://youerning.top/post/axum/quickstart-1/)
@@ -96,14 +148,14 @@ https://youerning.top
 
 ## 从后端到前端
 1. [从后端到前端: 写一个全文搜索引擎(Python)](https://github.com/youerning/blog/tree/master/search_engine)
-1. [从后端到前端: 写一个h5视频网站](https://github.com/youerning/blog/tree/master/video_site)
+2. [从后端到前端: 写一个h5视频网站](https://github.com/youerning/blog/tree/master/video_site)
 
 
 ## 代码玩股票系列
 虽然已经写了一些关于Python与股票的文章，但是之前总想通过一篇文章将一个部分完整的覆盖，可是理想很丰满现实很骨感，技术在不断的更新,思想在不断的改变，根本就不可能完全的覆盖，所以这个系列的文章可能更短小精悍，或者说流水账式的记录自己关于代码与股票的一些思考，之所以不是Python与股票，我想是因为光是Python远远不够。
 
 1. [用Python选一个自己的股票池1](https://github.com/youerning/blog/tree/master/stock_pool/post1.md)
-2. [用Python选一个自己的股票池2](https://github.com/youerning/blog/tree/master/stock_pool/post2.md)
+2. [用Python选一个自己的股票池2](https://github.com/youerning/blog/blob/master/stock_pool/post2.md)
 
 
 ## Python造轮子系列
@@ -135,6 +187,8 @@ BFE是一个非常强大的七层负载均衡, 与其他负载均衡存在一些
 
 
 ## 阅读Kubernetes源代码系列
+[Kubernetes源码阅读大纲](https://youerning.top/post/kubernetes/main/)
+
 1. kubectl
    1. [kubectl](https://youerning.top/post/kubernetes/kubectl1/) 
    2. [Kubectl源码阅读1](https://youerning.top/post/kubernetes/kubectl-new-1/)
@@ -167,11 +221,11 @@ BFE是一个非常强大的七层负载均衡, 与其他负载均衡存在一些
 
 
 **番外篇:**
-1. [ingress-nginx代码阅读](https://github.com/youerning/blog/tree/master/kubernetes/nginx-ingress-controller.md)
+1. [ingress-nginx代码阅读](https://github.com/youerning/blog/blob/master/kubernetes/nginx-ingress-controller.md)
 
 
 
 ## 非技术文章列表
 1. [股市投机迷思](https://github.com/youerning/blog/tree/master/stock-in-thought)
 2. [《趋势永存》-《海龟交易法则》读后感](https://github.com/youerning/blog/tree/master/trending_invest)
-
+3. [《英语语法分解大全》读后感](https://youerning.top/post/learning-english/post1/)
