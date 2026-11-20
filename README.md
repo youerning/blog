@@ -78,6 +78,7 @@ https://youerning.top
 63. [Chainlit入门：快速搞定 Python AI 对话机器人(智能体)](https://youerning.top/post/chainlit-tutorial/)
 64. [AI 编程助手的“不务正业”：OpenCode 免费额度与自定义 Agent 实战](https://youerning.top/post/opencode/opencode-sharing/)
 65. [用 Python 写个 SSH 蜜罐，来一场密码字典的“草船借箭”](https://github.com/youerning/blog/tree/master/sshpot)
+66. [互联网的垃圾堆里有什么？我让 AI 写了个爬虫，在 BT 网络里蹲了两天](https://github.com/youerning/blog/tree/master/btsniff)
 
 ## Cloudflare Workers系列
 1. [Cloudflare workers不完全指南](https://youerning.top/post/cloudflare-workers/post1/)

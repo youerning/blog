@@ -1,0 +1,22 @@
+[Unit]
+Description=bt-sniff BitTorrent DHT sniffer
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/opt/bt-sniff
+ExecStart=/opt/bt-sniff/.venv/bin/bt-sniff run --config /opt/bt-sniff/config.toml
+Restart=always
+RestartSec=10
+MemoryMax=600M
+TasksMax=256
+NoNewPrivileges=true
+PrivateTmp=true
+# DHT uses udp/6881, the harvester needs tcp+udp/6882.
+LimitNOFILE=8192
+
+[Install]
+WantedBy=multi-user.target

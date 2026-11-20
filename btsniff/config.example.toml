@@ -1,0 +1,41 @@
+# Copy to config.toml (or /etc/bt-sniff/config.toml) and tweak.
+
+log_level = "INFO"
+
+[dht]
+port = 6881
+# Outbound KRPC packets per second (shared by find_node / get_peers / sampling).
+query_rate = 10.0
+max_nodes = 50000
+# Stop active BEP 51 sampling while the candidate queue is this large.
+max_pending = 50000
+seeds = [
+  "router.bittorrent.com:6881",
+  "dht.transmissionbt.com:6881",
+  "router.utorrent.com:6881",
+  "dht.libtorrent.org:25401",
+  "dht.aelitis.com:6881",
+]
+
+[harvest]
+port = 6882
+# Torrents with metadata being fetched at the same time.
+concurrency = 20
+# Concurrent DHT lookups (each lookup is a handful of UDP packets).
+lookup_concurrency = 8
+timeout = 40.0
+lookup_timeout = 15.0
+# How many extra attempts after a failure.
+retry = 1
+retry_after = 1800
+# Skip absurd torrents.
+max_file_count = 5000
+max_info_dict = 2097152
+# Sampling budget.
+max_per_day = 5000
+max_per_minute = 30
+# Set to the machine's public IP to drop self-references found in the DHT.
+self_ip = ""
+
+[store]
+path = "/var/lib/bt-sniff/bt.db"
