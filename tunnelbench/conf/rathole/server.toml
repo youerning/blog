@@ -1,0 +1,11 @@
+[server]
+bind_addr = "0.0.0.0:60003"
+default_token = "CHANGE_ME"
+
+[server.services.iperf]
+token = "CHANGE_ME"
+bind_addr = "0.0.0.0:60023"
+
+[server.services.web]
+token = "CHANGE_ME"
+bind_addr = "0.0.0.0:60033"

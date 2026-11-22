@@ -79,6 +79,7 @@ https://youerning.top
 64. [AI 编程助手的“不务正业”：OpenCode 免费额度与自定义 Agent 实战](https://youerning.top/post/opencode/opencode-sharing/)
 65. [用 Python 写个 SSH 蜜罐，来一场密码字典的“草船借箭”](https://github.com/youerning/blog/tree/master/sshpot)
 66. [互联网的垃圾堆里有什么？我让 AI 写了个爬虫，在 BT 网络里蹲了两天](https://github.com/youerning/blog/tree/master/btsniff)
+67. [我把八种内网穿透都跑了一遍，发现「哪个最快」是个伪问题](https://github.com/youerning/blog/tree/master/tunnelbench)
 
 ## Cloudflare Workers系列
 1. [Cloudflare workers不完全指南](https://youerning.top/post/cloudflare-workers/post1/)

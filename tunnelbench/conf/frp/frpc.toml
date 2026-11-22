@@ -1,0 +1,19 @@
+serverAddr = "203.0.113.10"
+serverPort = 60001
+
+auth.method = "token"
+auth.token = "CHANGE_ME"
+
+[[proxies]]
+name = "iperf"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 61000
+remotePort = 60021
+
+[[proxies]]
+name = "web"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 60990
+remotePort = 60031

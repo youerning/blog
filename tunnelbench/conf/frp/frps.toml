@@ -1,0 +1,4 @@
+bindPort = 60001
+
+auth.method = "token"
+auth.token = "CHANGE_ME"

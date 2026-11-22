@@ -1,0 +1,11 @@
+[client]
+remote_addr = "203.0.113.10:60003"
+default_token = "CHANGE_ME"
+
+[client.services.iperf]
+token = "CHANGE_ME"
+local_addr = "127.0.0.1:61000"
+
+[client.services.web]
+token = "CHANGE_ME"
+local_addr = "127.0.0.1:60990"
